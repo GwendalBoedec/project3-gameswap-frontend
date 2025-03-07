@@ -21,6 +21,11 @@ function Navbar() {
                     Login
                 </Link>
             </li>
+            <li>
+                <Link to="/login">
+                    <button>Add a game to your collection</button>
+                </Link>
+            </li>
             </ul>
         </nav>
     )

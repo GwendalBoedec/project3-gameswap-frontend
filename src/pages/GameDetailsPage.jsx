@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import API_URL from "../config/API_URL";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function GameDetailsPage() {
 
@@ -31,7 +32,7 @@ function GameDetailsPage() {
             <p><strong>game style:</strong> {game.gameStyle}</p>
             <button>Update item</button>
             <button>Delete item</button>
-            <button> back to homepage </button>
+            <Link to="/"> <button> Back to homepage </button> </Link>
             </>
       
     )}
