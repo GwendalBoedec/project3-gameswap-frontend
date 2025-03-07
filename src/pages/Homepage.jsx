@@ -3,10 +3,13 @@ import { useState, useEffect } from "react";
 import API_URL from "../config/API_URL";
 import "../styles/homepage.css";
 import Loader from "../components/Loader.jsx";
+import { Link, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 
 function Homepage() {
 
+    const gameId = { useParams };
     const [games, setGames] = useState(null);
 
     useEffect(() => {
@@ -30,21 +33,30 @@ function Homepage() {
     return (
         <>
             <h1>GameSwa:p</h1>
+
+            <h2> For the love of gaming, in memory of the good old days</h2>
+            <p>"The good old days were better..." not sure if this statement is true, except for gaming! Whether you're a Nintendo fan or a Sony player, some games of our childhood still bring vibrant memories. At GameSwa:p, we decided to gather people with the same passion for retrogaming and help them bringing these memories back. It's time to play!</p>
+            <Link to={"/signup"}><button>Get Started</button> </Link>
+            
+
             <h2>share, swap and play!</h2>
             <h3>Have a look at some of the games shared by our community</h3>
-            {games.map((game, i) => {
-                return (
-                    <div key={i} className="gameCardOverview">
-                        <h3>{game.title}</h3>
-                        <p>console: {game.console}</p>
-                        <p>game style: {game.gameStyle}</p>
-                        <img src={game.image} alt="game cover" />
-                    </div>
-                )
-            })}
-            <h2> GameSwa:p, for the love of gaming, in memory of the good old days</h2>
-            <p>"The good old days were better..." not sure if this statement is true, except for gaming! Whether you're a Nintendo fan or a Sony player, some games of our childhood still bring vibrant memories. At GameSwa:p, we decided to gather people with the same passion for retrogaming and help them bringing these memories back. It's time to play!</p>
-            <button>Get Started</button>
+            <div className="gamesContainer">
+                {games.map((game, i) => {
+                    return (
+
+                        <div key={i} className="gameCardOverview">
+                            <h3>{game.title}</h3>
+                            <p><strong>console:</strong> {game.console}</p>
+                            <p><strong>game style:</strong> {game.gameStyle}</p>
+                            <img src={game.image} alt="game cover" />
+                            <p> <strong>a word for the owner:</strong> <em>"{game.ownerFeedback}"</em></p>
+                            <Link to={`/gameslist/${game._id}`}> <button> check more details </button> </Link>
+                        </div>
+
+                    )
+                })}
+            </div>
         </>
     )
 }
