@@ -22,7 +22,7 @@ function Navbar() {
                 </Link>
             </li>
             <li>
-                <Link to="/login">
+                <Link to="/myprofile/addgame">
                     <button>Add a game to your collection</button>
                 </Link>
             </li>
