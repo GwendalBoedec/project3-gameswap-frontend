@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import API_URL from "../config/API_URL";
 import { useParams, Link, useNavigate } from "react-router-dom";
+import "../styles/gameDetailsPage.css"
 
 function GameDetailsPage() {
 
