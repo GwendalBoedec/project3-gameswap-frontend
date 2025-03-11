@@ -8,6 +8,8 @@ import CreateGamePage from './pages/CreateGamePage'
 import UpdateGamePage from './pages/UpdateGamePage'
 import RequestGamePage from './pages/RequestGamePage'
 import RequestListPage from './pages/RequestsListPage'
+import SignupPage from './pages/SignupPage'
+import LoginPage from './pages/LoginPage'
 
 
 
@@ -18,7 +20,9 @@ function App() {
     <>
       <Navbar></Navbar>
       <Routes>
-        <Route path="/" element= {<Homepage />}/>
+        <Route path="/" element= {<Homepage/>}/>
+        <Route path="/signup" element= {<SignupPage/>}/>
+        <Route path="/login" element= {<LoginPage/>}/>
         <Route path="/gameslist/:gameId" element= {<GameDetailsPage/>}/>
         <Route path="/myprofile/addgame" element = {<CreateGamePage/>}/>
         <Route path="/myprofile/:gameId/update" element = {<UpdateGamePage/>}/>

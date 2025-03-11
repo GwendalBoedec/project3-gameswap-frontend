@@ -70,15 +70,15 @@ function UpdateGamePage() {
     return (
         <div className="">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <p>Title</p> <input
+                <label>Title</label> <input
                     {...register("title", { required: "game title is required" })}
                     placeholder="enter game title" />
                 {errors.title && <p>{errors.title.message}</p>}
-                <p>image url </p> <input
+                <label>image url </label> <input
                     {...register("image", { required: "image url is required" })}
                     placeholder="insert image url" />
                 {errors.image && <p>{errors.image.message}</p>}
-                <p>console </p> <select
+                <label>console </label> <select
                     {...register("console", { required: "define compatible console" })}
                     //placeholder="enter compatible console" 
                     defaultValue="">
@@ -95,7 +95,7 @@ function UpdateGamePage() {
                     <option value="Xbox"> Xbox </option>
                 </select>
                 {errors.console && <p>{errors.console.message}</p>}
-                <p>Game style </p><select
+                <label>Game style </label><select
                     {...register("gameStyle", { required: "define game style" })}
                     //placeholder="enter game style" 
                     defaultValue=""
@@ -111,11 +111,11 @@ function UpdateGamePage() {
                 </select>
 
                 {errors.gameStyle && <p>{errors.gameStyle.message}</p>}
-                <p>Feedback</p><input
+                <label>Feedback</label><input
                     {...register("ownerFeedback", { required: "provide feedback" })}
                     placeholder="provide some feedback about this game" />
                 {errors.ownerFeedback && <p>{errors.ownerFeedback.message}</p>}
-                <p>Year of purchase</p><select
+                <label>Year of purchase</label><select
                     {...register("purchaseYear", { required: "provide year of purchase" })}
                     defaultValue={simplifiedDate || ""} >
                     <option value="" disabled>Select the year</option>
@@ -124,7 +124,7 @@ function UpdateGamePage() {
                     ))}
                 </select>
                 {errors.purchaseYear && <p>{errors.purchaseYear.message}</p>}
-                <p>condition</p><select
+                <label>condition</label><select
                     {...register("condition", { required: "evaluate game condition" })}
                     defaultValue="">
                     <option value="" disabled> select the state condition of your game </option>
@@ -134,7 +134,7 @@ function UpdateGamePage() {
                     <option value="intact"> Intact </option>
                 </select>
                 {errors.condition && <p>{errors.condition.message}</p>}
-                <p>condition certificate</p><select
+                <label>condition certificate</label><select
                     {...register("conditionCertificate", { required: "indicate if game condition has been certificated" })}
                     defaultValue=""
                     placeholder="confirm if game condition has been certified">
@@ -143,7 +143,7 @@ function UpdateGamePage() {
                     <option value="false"> Not Certified </option>
                 </select>
                 {errors.conditionCertificate && <p>{errors.conditionCertificate.message}</p>}
-                <p>Available for trading?</p><select
+                <label>Available for trading?</label><select
                     {...register("availableForTrade", { required: "indicate if game is eligible to trading" })}
                     defaultValue="">
                     <option value="" disabled> confirm if game is available for trading </option>
