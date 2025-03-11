@@ -22,11 +22,18 @@ function Navbar() {
                 </Link>
                 </li>
                 <li>
+                <Link to="/myprofile">
+                    Our Community
+                </Link>
+                </li>
+                <li>
                 <Link to="/myprofile/addgame">
                     <button>Add a game to your collection</button>
                 </Link>
             </li>
+                <Link to="/">
                 <button onClick={logOutUser}>Logout</button>
+                </Link>
                 <span>{user && user.name}</span>
                 </>
             )}

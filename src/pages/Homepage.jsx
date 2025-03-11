@@ -51,7 +51,7 @@ function Homepage() {
                             <p><strong>game style:</strong> {game.gameStyle}</p>
                             <img src={game.image} alt="game cover" />
                             <p> <strong>a word from the owner:</strong> <em>"{game.ownerFeedback}"</em></p>
-                            <Link to={`/gameslist/${game._id}`}> <button> check more details </button> </Link>
+                            
                         </div>
 
                     )

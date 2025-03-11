@@ -19,9 +19,14 @@ function CreateGamePage() {
         yearsArray.push(year);
     }
 
-    const onSubmit = async (data) => {
+    const onSubmit = async (newGame) => {
         try {
-            const response = await axios.post(`${API_URL}/api/gameslist`, data);
+            const response = await axios.post(`${API_URL}/api/gameslist`, 
+                newGame, 
+                {
+                    headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
+                });
+
             console.log(response.data);
             alert("data succesfully sent");
 
@@ -121,7 +126,7 @@ function CreateGamePage() {
 
                 <button type="submit"> create game </button>
             </form>
-            <Link to="/"> <button> Back to homepage </button> </Link>
+            <Link to="/myprofile"> <button> Back to my profile </button> </Link>
         </div>
 
     )

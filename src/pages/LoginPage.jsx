@@ -34,7 +34,7 @@ function LoginPage(props) {
               }
             storeToken(response.data.authToken);
             authenticateUser();
-            navigate("/")
+            navigate("/myprofile")
         })
         .catch((error) => {
             console.error("Erreur Axios :", error);

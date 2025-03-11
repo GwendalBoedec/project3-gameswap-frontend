@@ -38,15 +38,20 @@ function RequestGamePage () {
         }
     }, [requestedGame, setValue]);
     
-    const onSubmit = async (data) => {
+    const onSubmit = async (newRequest) => {
 
         try {
-            const response = await axios.post(`${API_URL}/api/gameslist/${gameId}/requests`, data);
-            //console.log(response.data);
+            const response = await axios.post(`${API_URL}/api/gameslist/${gameId}/requests`, 
+                newRequest,
+                {
+                    headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
+                }
+             );
+            //console.log(response.newRequest);
             alert("data succesfully sent");
 
             reset(); // Réinitialisation du formulaire après soumission
-            navigate("/")
+            navigate("/myprofile")
         } catch (err) {
             console.log(err);
             alert("an error prevents from creating new item")
