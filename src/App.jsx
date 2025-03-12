@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import "./App.css"
 import Navbar from './components/Navbar'
-import Homepage from './pages/homepage'
-import GameDetailsPage from './pages/gameDetailsPage'
+import Homepage from './pages/Homepage'
+import GameDetailsPage from './pages/GameDetailsPage'
 import { Route, Routes } from 'react-router-dom'
 import CreateGamePage from './pages/CreateGamePage'
 import UpdateGamePage from './pages/UpdateGamePage'
@@ -10,7 +10,9 @@ import RequestGamePage from './pages/RequestGamePage'
 import RequestListPage from './pages/RequestsListPage'
 import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
-import MyProfile from './pages/myProfile'
+import MyProfile from './pages/MyProfile'
+
+
 
 
 function App() {
