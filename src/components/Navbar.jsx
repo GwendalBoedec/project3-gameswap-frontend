@@ -6,7 +6,7 @@ import { AuthContext } from "../context/auth.context";
 function Navbar() {
     const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
     return (
-
+        
         <nav>
             <ul className="nav-links">
             <li>
