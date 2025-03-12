@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 
 
 function CreateGamePage() {
-        
+
     const navigate = useNavigate()
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -18,8 +18,8 @@ function CreateGamePage() {
 
     const onSubmit = async (newGame) => {
         try {
-            const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/gameslist`, 
-                newGame, 
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/gameslist`,
+                newGame,
                 {
                     headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
                 });
@@ -101,7 +101,7 @@ function CreateGamePage() {
                     <option value="good"> Good </option>
                     <option value="very good"> Very good </option>
                     <option value="intact"> Intact </option>
-                        </select>
+                </select>
                 {errors.condition && <p>{errors.condition.message}</p>}
                 <label>condition certificate</label><select
                     {...register("conditionCertificate", { required: "indicate if game condition has been certificated" })}

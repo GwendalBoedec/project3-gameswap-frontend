@@ -36,7 +36,7 @@ function Homepage() {
             <h2> For the love of gaming, in memory of the good old days</h2>
             <p>"The good old days were better..." not sure if this statement is true, except for gaming! Whether you're a Nintendo fan or a Sony player, some games of our childhood still bring vibrant memories. At GameSwa:p, we decided to gather people with the same passion for retrogaming and help them bringing these memories back. It's time to play!</p>
             <Link to={"/signup"}><button>Get Started</button> </Link>
-            
+
 
             <h2>share, swap and play!</h2>
             <h3>Have a look at some of the games shared by our community</h3>
@@ -50,7 +50,7 @@ function Homepage() {
                             <p><strong>game style:</strong> {game.gameStyle}</p>
                             <img src={game.image} alt="game cover" />
                             <p> <strong>a word from the owner:</strong> <em>"{game.ownerFeedback}"</em></p>
-                            
+
                         </div>
 
                     )

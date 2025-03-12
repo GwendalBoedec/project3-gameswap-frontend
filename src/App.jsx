@@ -13,23 +13,22 @@ import LoginPage from './pages/LoginPage'
 import MyProfile from './pages/myProfile'
 
 
-
 function App() {
-  
+
 
   return (
     <>
       <Navbar></Navbar>
       <Routes>
-        <Route path="/" element= {<Homepage/>}/>
-        <Route path="/signup" element= {<SignupPage/>}/>
-        <Route path="/login" element= {<LoginPage/>}/>
-        <Route path="/gameslist/:gameId" element= {<GameDetailsPage/>}/>
-        <Route path="/myprofile" element = {<MyProfile/>}/>
-        <Route path="/myprofile/addgame" element = {<CreateGamePage/>}/>
-        <Route path="/myprofile/:gameId/update" element = {<UpdateGamePage/>}/>
-        <Route path="/gameslist/:gameId/request" element = {<RequestGamePage/>}/>
-        <Route path="/myprofile/requests" element = {<RequestListPage/>}/>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/gameslist/:gameId" element={<GameDetailsPage />} />
+        <Route path="/myprofile" element={<MyProfile />} />
+        <Route path="/myprofile/addgame" element={<CreateGamePage />} />
+        <Route path="/myprofile/:gameId/update" element={<UpdateGamePage />} />
+        <Route path="/gameslist/:gameId/request" element={<RequestGamePage />} />
+        <Route path="/myprofile/requests" element={<RequestListPage />} />
       </Routes>
     </>
   )

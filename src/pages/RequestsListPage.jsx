@@ -30,24 +30,26 @@ function RequestListPage() {
     };
 
     const handleAccept = async (requestedGameId, buyerId, requestId, offeredGameId, sellerId) => {
-       // to avoid multiclicking to swap
+        // to avoid multiclicking to swap
         if (loading) return;
         setLoading(true);
         try {
             // changer le propriétaire sur le jeu demandé
             await Promise.all([
                 axios.put(`${import.meta.env.VITE_API_URL}/api/gameslist/${requestedGameId}`, {
-                    owner: buyerId })
-                .catch (err => { throw new Error("error updating requested game owner ID" + err.message); }),
-             // changer le propriétaire sur le jeu proposé
-             await axios.put(`${import.meta.env.VITE_API_URL}/api/gameslist/${offeredGameId}`, {
-                owner: sellerId })
-                .catch (err => { throw new Error("error updating offered game owner ID" + err.message); }),
-            ]) 
-                      
+                    owner: buyerId
+                })
+                    .catch(err => { throw new Error("error updating requested game owner ID" + err.message); }),
+                // changer le propriétaire sur le jeu proposé
+                await axios.put(`${import.meta.env.VITE_API_URL}/api/gameslist/${offeredGameId}`, {
+                    owner: sellerId
+                })
+                    .catch(err => { throw new Error("error updating offered game owner ID" + err.message); }),
+            ])
+
             // Supprimer la demande après acceptation
             await axios.delete(`${import.meta.env.VITE_API_URL}/api/requests/${requestId}`)
-            .catch (err => { throw new Error("error deleting request" + err.message); });
+                .catch(err => { throw new Error("error deleting request" + err.message); });
 
             alert("Game successfully transferred!");
             setRequests((prevRequests) => prevRequests.filter(req => req._id !== requestId)); // Mise à jour locale
@@ -94,7 +96,7 @@ function RequestListPage() {
                             {loading ? "Processing..." : "Confirm Swap Deal"}
                         </button>
                         <button onClick={() => handleReject(request._id)} disabled={loading}>
-                            {loading ? "Processing..." : "Refuse Swap Deal"}                        
+                            {loading ? "Processing..." : "Refuse Swap Deal"}
                         </button>
                     </div>
                 ))
