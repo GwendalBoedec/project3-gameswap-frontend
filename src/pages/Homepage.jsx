@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import "../styles/homepage.css";
-import Loader from "../components/Loader.jsx";
+import Loader from "../Components/Loader.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
