@@ -28,7 +28,7 @@ function CreateGamePage() {
             alert("data succesfully sent");
 
             reset(); // Réinitialisation du formulaire après soumission
-            navigate("/")
+            navigate("/myprofile")
         } catch (err) {
             console.log(err);
             alert("an error prevents from creating new item")
@@ -97,7 +97,7 @@ function CreateGamePage() {
                     {...register("condition", { required: "evaluate game condition" })}
                     defaultValue="">
                     <option value="" disabled> select the state condition of your game </option>
-                    <option value="ok"> OK </option>
+                    <option value="OK"> OK </option>
                     <option value="good"> Good </option>
                     <option value="very good"> Very good </option>
                     <option value="intact"> Intact </option>

@@ -22,7 +22,7 @@ function Navbar() {
                 </Link>
                 </li>
                 <li>
-                <Link to="/myprofile">
+                <Link to="/community">
                     Our Community
                 </Link>
                 </li>

@@ -45,7 +45,7 @@ function GameDetailsPage() {
                     <Link to={`/myprofile/${game._id}/update`}><button>Update item</button></Link>
                     <button onClick={handleDelete}>Delete item</button>
                     <Link to={`/gameslist/${game._id}/request`}> <button> Send a swap request </button> </Link>
-                    <Link to="/"> <button> Back to homepage </button> </Link>
+                    <Link to="/myprofile"> <button> Back to my profile </button> </Link>
                 </>
 
             )}

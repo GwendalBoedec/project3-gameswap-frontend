@@ -11,6 +11,7 @@ import RequestListPage from './pages/RequestsListPage'
 import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
 import MyProfile from './pages/MyProfile'
+import CommunityPage from './pages/CommunityPage'
 
 
 
@@ -31,6 +32,7 @@ function App() {
         <Route path="/myprofile/:gameId/update" element={<UpdateGamePage />} />
         <Route path="/gameslist/:gameId/request" element={<RequestGamePage />} />
         <Route path="/myprofile/requests" element={<RequestListPage />} />
+        <Route path="/community" element={<CommunityPage />} />
       </Routes>
     </>
   )
