@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import API_URL from "../config/API_URL";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import "../styles/gameDetailsPage.css"
 
@@ -12,7 +11,7 @@ function GameDetailsPage() {
 
     const handleDelete = async (data) => {
         try {
-            const response = await axios.delete(`${API_URL}/api/gameslist/${gameId}`);
+            const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/gameslist/${gameId}`);
             console.log(response);
             alert("data succesfully deleted")
             navigate("/")
@@ -23,7 +22,7 @@ function GameDetailsPage() {
     };
 
     useEffect(() => {
-        axios.get(`${API_URL}/api/gameslist/${gameId}`)
+        axios.get(`${import.meta.env.VITE_API_URL}/api/gameslist/${gameId}`)
             .then((response) => {
                 console.log(response.data.title)
                 const gameArr = response.data;

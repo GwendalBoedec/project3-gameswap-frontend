@@ -1,13 +1,10 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import API_URL from "../config/API_URL";
 import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 function UpdateGamePage() {
-    console.log("update game page");
-    console.log(API_URL);
 
     const navigate = useNavigate();
     const { gameId } = useParams();
@@ -29,7 +26,7 @@ function UpdateGamePage() {
         const getGameDetails = async (data) => {
 
             try {
-                const response = await axios.get(`${API_URL}/api/gameslist/${gameId}`);
+                const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/gameslist/${gameId}`);
                 console.log(response.data);
                 const fullDate = response.data.purchaseYear;
                 const simplifiedDate = new Date(fullDate).getFullYear();
@@ -56,7 +53,7 @@ function UpdateGamePage() {
     const onSubmit = async (data) => {
 
         try {
-            const response = await axios.put(`${API_URL}/api/gameslist/${gameId}`, data);
+            const response = await axios.put(`${import.meta.env.VITE_API_URL}/api/gameslist/${gameId}`, data);
             console.log(response.data);
             alert("data succesfully sent")
             reset(); // Réinitialisation du formulaire après soumission

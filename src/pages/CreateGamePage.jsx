@@ -1,14 +1,11 @@
 import axios from "axios";
-import API_URL from "../config/API_URL";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 
 
 function CreateGamePage() {
-    console.log("create game page");
-    console.log(API_URL);
-
+        
     const navigate = useNavigate()
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -21,7 +18,7 @@ function CreateGamePage() {
 
     const onSubmit = async (newGame) => {
         try {
-            const response = await axios.post(`${API_URL}/api/gameslist`, 
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/gameslist`, 
                 newGame, 
                 {
                     headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }

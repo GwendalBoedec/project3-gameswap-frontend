@@ -1,5 +1,4 @@
 import axios from "axios";
-import API_URL from "../config/API_URL";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
@@ -14,7 +13,7 @@ function RequestGamePage () {
 
     useEffect (() => {
         
-        axios.get(`${API_URL}/api/gameslist/${gameId}`)
+        axios.get(`${import.meta.env.VITE_API_URL}/api/gameslist/${gameId}`)
         .then((requestedGameFromDb) => {
             setRequestedGame(requestedGameFromDb.data)
             console.log(requestedGameFromDb.data)
@@ -22,7 +21,7 @@ function RequestGamePage () {
         .catch((err) => {
             console.log(err, "something went wrong when retrieving game details");
         })
-        axios.get(`${API_URL}/api/gameslist`)
+        axios.get(`${import.meta.env.VITE_API_URL}/api/gameslist`)
         .then((allGames) => {
             console.log(allGames.data)
             setAvailableGames(allGames.data)
@@ -41,7 +40,7 @@ function RequestGamePage () {
     const onSubmit = async (newRequest) => {
 
         try {
-            const response = await axios.post(`${API_URL}/api/gameslist/${gameId}/requests`, 
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/gameslist/${gameId}/requests`, 
                 newRequest,
                 {
                     headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }

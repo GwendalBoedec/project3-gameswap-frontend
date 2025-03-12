@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import API_URL from "../config/API_URL"
 import axios from "axios"
 import { Link } from "react-router-dom";
 
@@ -11,7 +10,7 @@ function MyProfile () {
 
     useEffect (() => {
         // get user's games
-        axios.get(`${API_URL}/api/myprofile/games`, {
+        axios.get(`${import.meta.env.VITE_API_URL}/api/myprofile/games`, {
             headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
         })
         .then((gamesFromDB) => {
@@ -23,7 +22,7 @@ function MyProfile () {
             setErrorMessage("apologies, we are currently not able to load your game collection")
         });
         // get user's sent requests
-        axios.get(`${API_URL}/api/myprofile/sentRequests`, {
+        axios.get(`${import.meta.env.VITE_API_URL}/api/myprofile/sentRequests`, {
             headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
         })
         .then((sentRequestsFromDB) => {
@@ -34,7 +33,7 @@ function MyProfile () {
             console.log("error while retrieving your sent requests", err)
         });
                 // get user's received requests
-                axios.get(`${API_URL}/api/myprofile/sentRequests`, {
+                axios.get(`${import.meta.env.VITE_API_URL}/api/myprofile/sentRequests`, {
                     headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
                 })
                 .then((sentRequestsFromDB) => {

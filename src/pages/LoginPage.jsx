@@ -2,8 +2,6 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
-import API_URL from "../config/API_URL";
-
 
 function LoginPage(props) {
     const [email, setEmail] = useState("");
@@ -20,7 +18,7 @@ function LoginPage(props) {
     const handleLoginSubmit = (e) => {
         e.preventDefault();
         const requestBody = { email, password }
-        axios.post(`${API_URL}/auth/login`, requestBody)
+        axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, requestBody)
         .then((response) => {
             // Request to the server's endpoint `/auth/login` returns a response              
             // with the JWT string ->  response.data.authToken

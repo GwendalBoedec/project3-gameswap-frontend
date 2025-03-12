@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import API_URL from "../config/API_URL";
 import "../styles/homepage.css";
 import Loader from "../components/Loader.jsx";
 import { Link, useNavigate } from "react-router-dom";
@@ -13,7 +12,7 @@ function Homepage() {
     const [games, setGames] = useState(null);
 
     useEffect(() => {
-        axios.get(`${API_URL}/api/gameslist`)
+        axios.get(`${import.meta.env.VITE_API_URL}/api/gameslist`)
             .then((response) => {
                 console.log(response.data);
                 const gamesArr = response.data;

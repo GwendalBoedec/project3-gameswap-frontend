@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import API_URL from "../config/API_URL";
-
 
 function RequestListPage() {
 
@@ -20,7 +18,7 @@ function RequestListPage() {
         if (loading) return;
         setLoading(true);
         try {
-            await axios.delete(`${API_URL}/api/requests/${requestId}`);
+            await axios.delete(`${import.meta.env.VITE_API_URL}/api/requests/${requestId}`);
             alert("Request successfully rejected");
             setRequests((prevRequests) => prevRequests.filter(req => req._id !== requestId)); // Mise à jour locale de l'état
         } catch (err) {
@@ -38,17 +36,17 @@ function RequestListPage() {
         try {
             // changer le propriétaire sur le jeu demandé
             await Promise.all([
-                axios.put(`${API_URL}/api/gameslist/${requestedGameId}`, {
+                axios.put(`${import.meta.env.VITE_API_URL}/api/gameslist/${requestedGameId}`, {
                     owner: buyerId })
                 .catch (err => { throw new Error("error updating requested game owner ID" + err.message); }),
              // changer le propriétaire sur le jeu proposé
-             await axios.put(`${API_URL}/api/gameslist/${offeredGameId}`, {
+             await axios.put(`${import.meta.env.VITE_API_URL}/api/gameslist/${offeredGameId}`, {
                 owner: sellerId })
                 .catch (err => { throw new Error("error updating offered game owner ID" + err.message); }),
             ]) 
                       
             // Supprimer la demande après acceptation
-            await axios.delete(`${API_URL}/api/requests/${requestId}`)
+            await axios.delete(`${import.meta.env.VITE_API_URL}/api/requests/${requestId}`)
             .catch (err => { throw new Error("error deleting request" + err.message); });
 
             alert("Game successfully transferred!");
@@ -65,11 +63,11 @@ function RequestListPage() {
         const getGamesAndRequests = async () => {
 
             try {
-                const requestsResponse = await axios.get(`${API_URL}/api/requests`);
+                const requestsResponse = await axios.get(`${import.meta.env.VITE_API_URL}/api/requests`);
                 console.log(requestsResponse.data);
                 setRequests(requestsResponse.data);
 
-                const gamesResponse = await axios.get(`${API_URL}/api/gameslist`);
+                const gamesResponse = await axios.get(`${import.meta.env.VITE_import.meta.env.VITE_API_URL}/api/gameslist`);
                 console.log(gamesResponse.data);
                 setGames(gamesResponse.data);
             }
