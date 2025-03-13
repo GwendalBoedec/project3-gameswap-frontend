@@ -58,15 +58,32 @@ function MyProfile() {
 
     // to manage deal acceptation
     const handleAccept = async (requestedGameId, offeredGameId, requestId, buyerId, sellerId) => {
+        // Vérifie la validité des IDs
+        console.log(requestedGameId, offeredGameId, buyerId, sellerId)
+
         // to avoid multiclicking to swap
         if (loading) return;
         setLoading(true);
         try {
             // Update owner for requested and offered games
-            await Promise.all([
+            /* await  Promise.all([
                 axios.put(`${import.meta.env.VITE_API_URL}/api/gameslist/${requestedGameId}`, { owner: buyerId}),
                 axios.put(`${import.meta.env.VITE_API_URL}/api/gameslist/${offeredGameId}`, { owner:  sellerId})
-            ]);
+            ]); */
+
+            await axios.put(`${import.meta.env.VITE_API_URL}/api/gameslist/swap`, {
+
+                requestedGameId,
+                offeredGameId,
+                buyerId,
+                sellerId,
+            })
+                .then(response => {
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    console.error("Erreur lors de l'échange:", error);
+                });
 
             // Delete the request after accepting
             await axios.delete(`${import.meta.env.VITE_API_URL}/api/requests/${requestId}`, {
@@ -75,30 +92,30 @@ function MyProfile() {
 
             alert("Game successfully transferred!");
 
-                 // 3️⃣ Mettre à jour les jeux du user connecté
-        const gamesResponse = await axios.get(`${import.meta.env.VITE_API_URL}/api/myprofile/games`, {
-            headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
-        })
+            // updating user Games after swap
+            const gamesResponse = await axios.get(`${import.meta.env.VITE_API_URL}/api/myprofile/games`, {
+                headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
+            })
 
-        setUserGames(gamesResponse.data);
+            setUserGames(gamesResponse.data);
 
-        // 4️⃣ Mettre à jour la liste des requêtes
-        setReceivedRequests((prevRequests) => prevRequests.filter(req => req._id !== requestId));
-        setSentRequests((prevRequests) => prevRequests.filter(req => req._id !== requestId));
+            // Updating requests
+            setReceivedRequests((prevRequests) => prevRequests.filter(req => req._id !== requestId));
+            setSentRequests((prevRequests) => prevRequests.filter(req => req._id !== requestId));
 
-        // 5️⃣ Rafraîchir les données utilisateurs pour que l'autre utilisateur voie aussi la mise à jour
-        await axios.get(`${import.meta.env.VITE_API_URL}/api/users`, {
-            headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
-        })
-        
-        .then((response) => {
-            setUsers(response.data);
-        })
-        .catch((err) => {
-            console.error("Error refreshing community data:", err);
-        });
+            // Update all users data to vehiculate new changes of ownership
+            await axios.get(`${import.meta.env.VITE_API_URL}/api/users`, {
+                headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
+            })
 
-        navigate("/myprofile")
+                .then((response) => {
+                    setUsers(response.data);
+                })
+                .catch((err) => {
+                    console.error("Error refreshing community data:", err);
+                });
+
+           // navigate("/myprofile")
 
         } catch (err) {
             console.error("Error accepting request:", err);
@@ -131,7 +148,7 @@ function MyProfile() {
     };
 
     return (
-        <>
+        <div className="profileContainer">
             <h1> my profile </h1>
             <h2> my games </h2>
             {errorMessage && <p>{errorMessage}</p>}
@@ -160,7 +177,7 @@ function MyProfile() {
                         <img src={receivedRequest.requestedGame.image} alt="game cover" />
                         <p><strong>Game offered for swapping:</strong> {receivedRequest.offeredGame.title}</p>
                         <button
-                         
+
                             onClick={() => handleAccept(receivedRequest.requestedGame._id, receivedRequest.offeredGame._id, receivedRequest._id, receivedRequest.offeredGame.owner, receivedRequest.requestedGame.owner)}
                             disabled={loading}
                             key={`accept-${receivedRequest._id}`}
@@ -198,7 +215,7 @@ function MyProfile() {
             ) : (
                 <p>You haven't sent any swap requests yet.</p>
             )}
-        </>
+        </div>
     )
 }
 

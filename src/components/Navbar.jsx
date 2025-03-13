@@ -1,40 +1,46 @@
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import "../styles/navbar.css"; 
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+import { AppShell, Burger } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+
+import { Button, Text, Container } from '@mantine/core';
 
 function Navbar() {
     const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+    console.log("user", user)
     return (
-        
+        <AppShell> 
         <nav>
-            <ul className="nav-links">
+                    <ul className="nav-links">
             <li>
-                <Link to="/">
+                <NavLink to="/">
                     Home
-                </Link>
+                </NavLink>
             </li>
             {isLoggedIn &&(
                 <>
                 <li>
-                <Link to="/myprofile">
+                <NavLink to="/myprofile">
                     My Profile
-                </Link>
+                </NavLink>
                 </li>
                 <li>
-                <Link to="/community">
+                <NavLink to="/community">
                     Our Community
-                </Link>
+                </NavLink>
                 </li>
                 <li>
-                <Link to="/myprofile/addgame">
-                    <button>Add a game to your collection</button>
-                </Link>
+                <NavLink to="/myprofile/addgame">
+                    <Button>Add a game to your collection</Button>
+                </NavLink>
             </li>
-                <Link to="/">
-                <button onClick={logOutUser}>Logout</button>
-                </Link>
-                <span>{user && user.name}</span>
+                <NavLink to="/">
+                <Button onClick={logOutUser}>Logout</Button>
+                </NavLink>
+                <span> Hi {user && user.username ? user.username : "Loading"} !</span>
+
                 </>
             )}
             {!isLoggedIn && (
@@ -53,7 +59,11 @@ function Navbar() {
             )}
             
             </ul>
+        
         </nav>
+       
+        </AppShell>
+        
     )
 }
 

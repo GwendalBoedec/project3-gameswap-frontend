@@ -11,22 +11,30 @@ nav {
     padding: 0;
     margin: 0;
     display: flex;
+    align-items: center;
 }
 
 .nav-links li {
     margin: 0 15px;
+    
 }
 
 .nav-links a {
     text-decoration: none;
+    font-weight: normal;
     color: white;
     font-size: 16px;
     transition: color 0.3s;
+    font-weight: bold;
 }
 
 .nav-links a:hover {
-    color: #f4a261;
+    color: #6f7af7;
+    
 }
+
+.nav-links a.active {
+    color: #6f7af7}
 
 /* Responsive */
 @media (max-width: 768px) {

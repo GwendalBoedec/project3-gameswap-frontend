@@ -1,6 +1,16 @@
-
+:root{
+--primary-color: #ffd400;
+--secondary-color: #ffd400;
+--hover-color: #ffd400;
+--gradient-start: #ffd400;
+--gradient-end: #ffd400;
+--text-color: #ffd400;
+--background-color: #ffd400;
+}
 
 body {
+  color: var(--text-color);
+  background-color: var(--background-color);
    min-width: 320px;
   min-height: 100vh;
 }
