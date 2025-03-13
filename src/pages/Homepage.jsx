@@ -49,10 +49,8 @@ function Homepage() {
                         <div key={i} className="gameCardOverview">
                             <h3>{game.title}</h3>
                             <p><strong>console:</strong> {game.console}</p>
-                            <p><strong>game style:</strong> {game.gameStyle}</p>
                             <img src={game.image} alt="game cover" />
-                            <p> <strong>a word from the owner:</strong> <em>"{game.ownerFeedback}"</em></p>
-
+                           
                         </div>
 
                     )

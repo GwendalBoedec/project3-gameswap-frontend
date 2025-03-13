@@ -42,7 +42,9 @@ function GameDetailsPage() {
                     <h3>{game.title}</h3>
                     <p><strong>console:</strong> {game.console}</p>
                     <p><strong>game style:</strong> {game.gameStyle}</p>
-                    <Link to={`/myprofile/${game._id}/update`}><button>Update item</button></Link>
+                    <img src={game.image} alt="game cover" />
+                    <p> <strong>a word from the owner:</strong> <em>"{game.ownerFeedback}"</em></p>
+                    
                     <button onClick={handleDelete}>Delete item</button>
                     <Link to={`/gameslist/${game._id}/request`}> <button> Send a swap request </button> </Link>
                     <Link to="/myprofile"> <button> Back to my profile </button> </Link>

@@ -29,6 +29,20 @@ function MyProfile() {
                 setErrorMessage("apologies, we are currently not able to load your game collection")
             });
 
+        // deleting a game 
+
+        const handleGameDelete = async (data) => {
+            try {
+                const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/gameslist/${gameId}`);
+                console.log(response);
+                alert("data succesfully deleted")
+                navigate("/")
+            } catch (err) {
+                console.log(err);
+                alert("an error prevents from deleting new item")
+            }
+        };
+
         // get user's received requests
         axios.get(`${import.meta.env.VITE_API_URL}/api/myprofile/receivedRequests`, {
             headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
@@ -158,6 +172,8 @@ function MyProfile() {
                         <p><strong>Title:</strong> {game.title}</p>
                         <img src={game.image} alt="game cover" />
                         <Link to={`/gameslist/${game._id}`}> <button> check more details </button> </Link>
+                        <Link to={`/myprofile/${game._id}/update`}><button>Update game?</button></Link>
+                       
                     </div>
 
 
