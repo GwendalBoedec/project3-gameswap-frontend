@@ -27,7 +27,7 @@ function GameDetailsPage() {
                 console.log(response.data.title)
                 const gameArr = response.data;
                 setGame(gameArr);
-                console.log(game)
+                console.log(response.data.conditionCertificate)
             })
             .catch((err) => {
                 console.log("oops something went wrong when retrieving game details", err)
@@ -44,10 +44,12 @@ function GameDetailsPage() {
                     <p><strong>game style:</strong> {game.gameStyle}</p>
                     <img src={game.image} alt="game cover" />
                     <p> <strong>a word from the owner:</strong> <em>"{game.ownerFeedback}"</em></p>
-                    
-                    <button onClick={handleDelete}>Delete item</button>
+                    <p><strong>game condition:</strong> {game.condition}</p>
+                    <p><strong>Year of purchase:</strong> {game.purchaseYear}</p>
+                    <p><strong>Is game condition certificated?</strong> {game.conditionCertificate ? "Yes" : " No"}</p>
+                    <p><strong>Is owner ok for swaping?</strong> {game.availableForTrade ? "yes, let's talk!" : "No, unless you have a very good offer!"}</p>
                     <Link to={`/gameslist/${game._id}/request`}> <button> Send a swap request </button> </Link>
-                    <Link to="/myprofile"> <button> Back to my profile </button> </Link>
+                    <Link to="/community"> <button> Back to previous page </button> </Link>
                 </>
 
             )}

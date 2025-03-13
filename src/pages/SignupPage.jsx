@@ -4,7 +4,7 @@ import axios from "axios";
 import {consoleOptions, GameStylesOptions } from "../config/FORMS_OPTIONS";
 import Select from "react-select";
 import { Button, PasswordInput, Title, MultiSelect } from "@mantine/core";
-import "../styles/signupLoginForms.css"
+import "../styles/Forms.css"
 
 
 function SignupPage(props) {
@@ -107,13 +107,39 @@ function SignupPage(props) {
                     clearable />
                  </div>
                 <div className="form-group"> 
-                <label className="form-label">Favorite Game Style(s):</label>
+                <label >Favorite Game Style(s):</label>
                 <MultiSelect
-                    
                     data={GameStylesOptions}
                     value={favoriteGameStyles}
                     onChange={handleFavoriteGameStyles}
                     placeholder="choose your favorite game styles"
+                    sx={{
+                        input: {
+                          borderColor: '#444 !important',
+                          '&:focus': {
+                            borderColor: "#ffd400 !important",
+                          },
+                          backgroundColor: '#2b2b3c !important',
+                          color: '#fff !important', // Texte en blanc pour lisibilité
+                        },
+                        dropdown: { 
+                          backgroundColor: '#fff !important', 
+                          border: '1px solid #444 !important', 
+                        },
+                        item: { 
+                          color: '#000 !important', // Texte noir pour lisibilité
+                          '&[data-hovered]': {
+                            backgroundColor: '#ffd400 !important', // Fond jaune au survol
+                            color: '#000 !important', // Texte noir pour contraste
+                          },
+                        },
+                        value: {
+                          color: '#fff !important', // Texte blanc pour l'élément sélectionné
+                          backgroundColor: '#444 !important', // Fond foncé pour contraste
+                          borderRadius: '4px', 
+                          padding: '2px 6px' 
+                        },
+                      }}
                     searchable
                     clearable />
                 </div>

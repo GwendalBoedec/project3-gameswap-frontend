@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import "../styles/Forms.css"
+import { Title } from "@mantine/core";
 
 
 
@@ -25,7 +27,7 @@ function CreateGamePage() {
                 });
 
             console.log(response.data);
-            alert("data succesfully sent");
+            alert("your game is now available!");
 
             reset(); // Réinitialisation du formulaire après soumission
             navigate("/myprofile")
@@ -36,17 +38,23 @@ function CreateGamePage() {
     };
 
     return (
-        <div className="">
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <label>Title:</label> <input
+        <div>
+            <Title className="form-title">Register a New Game</Title>
+            <form className="signupLoginForms" onSubmit={handleSubmit(onSubmit)}>
+                <div className="form-group"> 
+                <label className="form-label">Title:</label> <input className="form-input"
                     {...register("title", { required: "game title is required" })}
                     placeholder="enter game title" />
                 {errors.title && <p>{errors.title.message}</p>}
-                <label>image url: </label> <input
+                </div>
+                <div className="form-group"> 
+                <label className="form-label">image url: </label> <input className="form-input"
                     {...register("image", { required: "image url is required" })}
                     placeholder="insert image url" />
                 {errors.image && <p>{errors.image.message}</p>}
-                <label>console </label> <select
+                </div>
+                <div className="form-group"> 
+                <label className="form-label">console </label> <select className="form-input"
                     {...register("console", { required: "define compatible console" })}
 
                     defaultValue="">
@@ -63,7 +71,9 @@ function CreateGamePage() {
                     <option value="Xbox"> Xbox </option>
                 </select>
                 {errors.console && <p>{errors.console.message}</p>}
-                <label>Game style </label><select
+                </div>
+                <div className="form-group"> 
+                <label className="form-label">Game style </label><select className="form-input"
                     {...register("gameStyle", { required: "define game style" })}
 
                     defaultValue=""
@@ -79,11 +89,15 @@ function CreateGamePage() {
                 </select>
 
                 {errors.gameStyle && <p>{errors.gameStyle.message}</p>}
-                <label>Feedback</label><input
+                </div>
+                <div className="form-group"> 
+                <label className="form-label">Feedback</label><input className="form-input"
                     {...register("ownerFeedback", { required: "provide feedback" })}
                     placeholder="provide some feedback about this game" />
                 {errors.ownerFeedback && <p>errors.ownerFeedback.message</p>}
-                <label>Year of purchase</label><select
+                </div>
+                <div className="form-group"> 
+                <label className="form-label">Year of purchase</label><select className="form-input"
                     {...register("purchaseYear", { required: "provide year of purchase" })}
                     placeholder="indicate year of purchase" >
                     {yearsArray.map(year => (
@@ -91,9 +105,12 @@ function CreateGamePage() {
                         <option key={year} value={year}>{year}</option>
                     ))}
                 </select>
+                
 
                 {errors.purchaseYear && <p>{errors.purchaseYear.message}</p>}
-                <label>condition</label><select
+                </div>
+                <div className="form-group"> 
+                <label className="form-label">condition</label><select className="form-input"
                     {...register("condition", { required: "evaluate game condition" })}
                     defaultValue="">
                     <option value="" disabled> select the state condition of your game </option>
@@ -103,7 +120,9 @@ function CreateGamePage() {
                     <option value="intact"> Intact </option>
                 </select>
                 {errors.condition && <p>{errors.condition.message}</p>}
-                <label>condition certificate</label><select
+                </div>
+                <div className="form-group"> 
+                <label className="form-label">condition certificate</label><select className="form-input"
                     {...register("conditionCertificate", { required: "indicate if game condition has been certificated" })}
                     defaultValue=""
                     placeholder="confirm if game condition has been certified">
@@ -112,7 +131,9 @@ function CreateGamePage() {
                     <option value="false"> Not Certified </option>
                 </select>
                 {errors.conditionCertificate && <p>{errors.conditionCertificate.message}</p>}
-                <label>Available for trading?</label><select
+                </div>
+                <div className="form-group"> 
+                <label className="form-label">Available for trading?</label><select className="form-input"
                     {...register("availableForTrade", { required: "indicate if game is eligible to trading" })}
                     defaultValue="">
                     <option value="" disabled> confirm if game is available for trading </option>
@@ -120,7 +141,7 @@ function CreateGamePage() {
                     <option value="false"> No, it's too good to be swaped! </option>
                 </select>
                 {errors.availableForTrade && <p>{errors.availableForTrade.message}</p>}
-
+                </div>
                 <button type="submit"> create game </button>
             </form>
             <Link to="/myprofile"> <button> Back to my profile </button> </Link>

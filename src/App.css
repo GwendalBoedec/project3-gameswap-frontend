@@ -1,7 +1,15 @@
-
+body {
+  margin: 0;
+  padding: 0;
+}
   
   h1 {
     font-size: 3.2em;
     line-height: 1.1;
   }
-  
+
+  #root {
+    background-color: #eaeaf9 !important;
+    min-height: 100vh; /* Assure-toi que la couleur couvre toute la hauteur de la page */
+  color: #2b2b3c;
+  }

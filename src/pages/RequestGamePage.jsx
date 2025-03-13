@@ -2,6 +2,7 @@ import axios from "axios";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
+import { Title, Button } from "@mantine/core";
 
 function RequestGamePage() {
 
@@ -9,7 +10,7 @@ function RequestGamePage() {
     const { gameId } = useParams();
     const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm();
     const [requestedGame, setRequestedGame] = useState();
-    const [availableGames, setAvailableGames] = useState()
+    const [userGames, setUserGames] = useState();
 
     useEffect(() => {
 
@@ -21,14 +22,6 @@ function RequestGamePage() {
             .catch((err) => {
                 console.log(err, "something went wrong when retrieving game details");
             })
-        axios.get(`${import.meta.env.VITE_API_URL}/api/gameslist`)
-            .then((allGames) => {
-                console.log(allGames.data)
-                setAvailableGames(allGames.data)
-            })
-            .catch((e) => {
-                console.log(e, "something went wrong when retrieving all games details");
-            })
     }, [gameId])
 
     useEffect(() => {
@@ -36,6 +29,22 @@ function RequestGamePage() {
             setValue("requestedGame", requestedGame._id);
         }
     }, [requestedGame, setValue]);
+
+    useEffect(() => {
+          // get user's games
+          axios.get(`${import.meta.env.VITE_API_URL}/api/myprofile/games`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
+        })
+            .then((gamesFromDB) => {
+                console.log("games arr owned by user", gamesFromDB.data);
+                setUserGames(gamesFromDB.data)
+            })
+            .catch((err) => {
+                console.log("something wrong happened when retrieving user's games", err)
+                
+            });
+        }, [])
+ 
 
     const onSubmit = async (newRequest) => {
 
@@ -47,7 +56,7 @@ function RequestGamePage() {
                 }
             );
             //console.log(response.newRequest);
-            alert("data succesfully sent");
+            alert("your request has been sent!");
 
             reset(); // Réinitialisation du formulaire après soumission
             navigate("/myprofile")
@@ -59,35 +68,42 @@ function RequestGamePage() {
 
 
     return (
-        <div className="">
-            <h2>Make your swap offer!</h2>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <p>Targeted game</p>
-                <input type="text"
+        <div >
+            <Title className="form-title">Make your swap offer!</Title>
+            <form className="signupLoginForms" onSubmit={handleSubmit(onSubmit)}>
+                <div className="form-group">
+                <label className="form-label">Targeted game</label>
+                <input type="text" className="form-input"
                     value={requestedGame?.title || ""}
                     readOnly />
-                <input type="hidden"
+                    </div>
+                    <div className="form-group">
+                <input type="hidden" className="form-input"
                     {...register("requestedGame")}
                     value={requestedGame?._id || ""}
                 />
-                <p>Offered game</p> <select
+                </div>
+                <div className="form-group">
+                <label className="form-label">Offered game</label> <select className="form-input"
                     {...register("offeredGame", { required: "pick a game among your collection" })}
                     defaultValue="" >
                     <option value="" disabled> pick a game among your collection </option>
-                    {availableGames?.map((game) => (
+                    {userGames?.map((game) => (
                         <option key={game._id} value={game._id}>{game.title}</option>
                     ))}
                 </select>
-
-                <p>Message</p> <input {...register("comment", { required: "pick a game among your collection" })}
-                    placeholder={`leave a message to the owner of ${requestedGame}`} />
+                </div>
+                <div className="form-group">
+                <label className="form-label">Message</label> <input {...register("comment", { required: "pick a game among your collection" })}
+                    className="form-input" placeholder={`leave a message to the owner of ${requestedGame.title}`} />
                 {errors.comment && <p>{errors.comment.message}</p>}
-
-                <p>Contact Details</p> <input {...register("contactDetails", { required: "add your phonenumber and/or email to get contacted by the owner" })}
-                    placeholder="add your phonenumber and/or email to get contacted by the owner" />
+                </div>
+                <div className="form-group">
+                <label className="form-label">Contact Details</label> <input {...register("contactDetails", { required: "add your phonenumber and/or email to get contacted by the owner" })}
+                    className="form-input" placeholder="add your phonenumber and/or email to get contacted by the owner" />
                 {errors.contactDetails && <p>{errors.contactDetails.message}</p>}
-
-                <button type="submit"> send request </button>
+                    </div>
+                <Button color="#5315c6" type="submit"> send request </Button>
             </form>
 
         </div>

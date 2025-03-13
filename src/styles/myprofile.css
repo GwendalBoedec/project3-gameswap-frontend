@@ -1,0 +1,55 @@
+.gameCardOverview {
+    width: 20%;
+    margin: 10px;
+    padding: 2px;
+    border: 2px #100a68d6;
+    border-radius: 7px;
+    text-align: center;
+    background: linear-gradient(to right, #0b0d7628, #c9ccef1f);
+    box-shadow: 0px 4px 10px rgba(44, 52, 100, 0.579);
+    flex: 0 1 29%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+   
+  }
+
+  .gameCardOverview h3 {
+    font-size: 3vw;
+  }
+
+  .gameCardOverview p {
+    font-size: 2vw;
+  }
+
+.gameCardOverview:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+  .profileContainer {
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;  
+    justify-content: center;
+  }
+
+img {
+    width: 90%;
+}
+
+.header {
+  display: flex;
+}
+
+.textHeader {
+  margin-left: 5%;
+  max-width: 50%;
+  text-align: justify;
+}
+
+.logo{
+  max-width: 300px;
+  width: 30%;
+  height: 30%;
+}

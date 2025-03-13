@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import "../styles/myprofile.css";
+import { Button } from "@mantine/core";
 
 
 function MyProfile() {
@@ -29,19 +31,9 @@ function MyProfile() {
                 setErrorMessage("apologies, we are currently not able to load your game collection")
             });
 
-        // deleting a game 
+       
 
-        const handleGameDelete = async (data) => {
-            try {
-                const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/gameslist/${gameId}`);
-                console.log(response);
-                alert("data succesfully deleted")
-                navigate("/")
-            } catch (err) {
-                console.log(err);
-                alert("an error prevents from deleting new item")
-            }
-        };
+
 
         // get user's received requests
         axios.get(`${import.meta.env.VITE_API_URL}/api/myprofile/receivedRequests`, {
@@ -69,6 +61,19 @@ function MyProfile() {
             });
 
     }, [])
+
+    //magaging game delete
+    const handleGameDelete = async (gameId) => {
+        try {
+            const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/gameslist/${gameId}`);
+            console.log(response);
+            alert("data succesfully deleted")
+            navigate("/myprofile")
+        } catch (err) {
+            console.log(err);
+            alert("an error prevents from deleting new item")
+        }
+    };
 
     // to manage deal acceptation
     const handleAccept = async (requestedGameId, offeredGameId, requestId, buyerId, sellerId) => {
@@ -162,28 +167,37 @@ function MyProfile() {
     };
 
     return (
+    <>
+        <div className="textHeader">
+        <h1> What's up? </h1>
+        <h2> My Game Collection </h2>
+
+        </div>
+
         <div className="profileContainer">
-            <h1> my profile </h1>
-            <h2> my games </h2>
+           
             {errorMessage && <p>{errorMessage}</p>}
             {userGames.length > 0 ? (
                 userGames.map((game) => (
                     <div key={game._id} className="gameCardOverview">
                         <p><strong>Title:</strong> {game.title}</p>
                         <img src={game.image} alt="game cover" />
-                        <Link to={`/gameslist/${game._id}`}> <button> check more details </button> </Link>
-                        <Link to={`/myprofile/${game._id}/update`}><button>Update game?</button></Link>
-                       
+                        <Link to={`/gameslist/${game._id}`}> <Button> check more details </Button> </Link>
+                        <Link to={`/myprofile/${game._id}/update`}><Button>Update game?</Button></Link>
+                        <Button color="#553333" onClick={() => handleGameDelete(game._id)}>Delete item</Button>
                     </div>
-
-
+        
                 ))
             ) : (
                 <p>You haven't added any games yet.</p>
             )}
+            
+            </div>
+            <div className="add-game-button"> 
             <Link to="/myprofile/addgame">
-                <button>Want to expose a new game?</button>
+                <Button>Want to expose a new game?</Button>
             </Link>
+            </div>
             <h2> My Open Requests </h2>
             <h3>Received Requests</h3>
             {receivedRequests.length > 0 ? (
@@ -192,14 +206,14 @@ function MyProfile() {
                         <p><strong>Game Targeted:</strong> {receivedRequest.requestedGame.title}</p>
                         <img src={receivedRequest.requestedGame.image} alt="game cover" />
                         <p><strong>Game offered for swapping:</strong> {receivedRequest.offeredGame.title}</p>
-                        <button
+                        <Button
 
                             onClick={() => handleAccept(receivedRequest.requestedGame._id, receivedRequest.offeredGame._id, receivedRequest._id, receivedRequest.offeredGame.owner, receivedRequest.requestedGame.owner)}
                             disabled={loading}
                             key={`accept-${receivedRequest._id}`}
                         >
                             {loading ? "Processing..." : "Confirm Swap Deal"}
-                        </button>
+                        </Button>
                         <button onClick={() => handleReject(receivedRequest._id)}
                             disabled={loading}
                             key={`reject-${receivedRequest._id}`}>
@@ -231,7 +245,8 @@ function MyProfile() {
             ) : (
                 <p>You haven't sent any swap requests yet.</p>
             )}
-        </div>
+        
+        </>
     )
 }
 

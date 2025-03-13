@@ -46,6 +46,11 @@ span {
 .nav-links a.active {
     color: #6f7af7}
 
+    .logout {
+        position: right;
+        align-self:last baseline;
+    }
+
 /* Responsive */
 @media (max-width: 768px) {
     nav {

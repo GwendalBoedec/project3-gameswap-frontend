@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { Button, PasswordInput, Title } from "@mantine/core";
-import "../styles/signupLoginForms.css"
+import "../styles/Forms.css"
 
 function LoginPage(props) {
   const [email, setEmail] = useState("");

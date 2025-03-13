@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import "./App.css"
-import "./index.css"
 import Navbar from './components/Navbar'
 import Homepage from './pages/Homepage'
 import GameDetailsPage from './pages/GameDetailsPage'

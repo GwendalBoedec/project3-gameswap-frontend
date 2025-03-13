@@ -25,15 +25,32 @@ createRoot(document.getElementById('root')).render(
       MultiSelect: {
         styles: {
           input: {
+            color: '#000000',
             borderColor: '#444',
             '&:focus': {
               borderColor:"#ffd400",  
             },
             backgroundColor: '#2b2b3c',
-            color: '#000000',
+            color: '#fff',
           },
-          dropdown: { backgroundColor: '#000000' },
-          item: { color: '#444' }
+          dropdown: { 
+            color: '#000000',
+            backgroundColor: '#2b2b3c',
+            border: '1px solid #444',},
+          item: { color: '#000000',
+            '&[data-hovered]': {
+            backgroundColor: '#ffd400', // 
+            color: '#000', // Texte foncé pour contraste
+          },
+          value: {
+            color: '#000000', // Couleur du texte des valeurs sélectionnées
+            backgroundColor: '#444', // Fond foncé pour contraste
+      borderRadius: '4px', // Optionnel, améliore le rendu visuel
+      padding: '2px 6px' // Ajuste l'espacement pour éviter un fond blanc par défaut
+          },
+        },
+
+          
         }
       }
     }
