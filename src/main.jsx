@@ -30,9 +30,9 @@ createRoot(document.getElementById('root')).render(
               borderColor:"#ffd400",  
             },
             backgroundColor: '#2b2b3c',
-            color: 'black',
+            color: '#000000',
           },
-          dropdown: { backgroundColor: '#ffffff' },
+          dropdown: { backgroundColor: '#000000' },
           item: { color: '#444' }
         }
       }
