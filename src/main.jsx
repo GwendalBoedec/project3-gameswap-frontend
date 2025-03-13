@@ -30,7 +30,7 @@ createRoot(document.getElementById('root')).render(
               borderColor:"#ffd400",  
             },
             backgroundColor: '#2b2b3c',
-            color: 'white',
+            color: 'black',
           },
           dropdown: { backgroundColor: '#ffffff' },
           item: { color: '#444' }
