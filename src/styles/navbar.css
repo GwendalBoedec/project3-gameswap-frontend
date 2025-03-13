@@ -6,6 +6,15 @@ nav {
     background-color: rgb(22, 2, 41);
 }
 
+nav img {
+    width:50px;
+}
+
+span {
+    font-weight: bold;
+    color: white;
+}
+
 .nav-links {
     list-style: none;
     padding: 0;
@@ -16,6 +25,7 @@ nav {
 
 .nav-links li {
     margin: 0 15px;
+    order: 1;
     
 }
 
@@ -45,9 +55,41 @@ nav {
 
     .nav-links {
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
     }
 
+    .nav-links li.home {
+        display: none; /* Cache l'élément "Home" sur les petits écrans */
+    }
+
+    .add-button {
+        display: none;
+    }
+
+    .home {
+        display: none;
+    }
+
+    .logout {
+        display: none;
+    }
+
+    span {
+        display: none;
+    }
+
+    .nav-links li.logo {
+        display: block;
+        order: 1; /* Le logo a un ordre de 1 */
+
     .nav-links li {
-        margin: 10px 0;
+        margin: 5px 0;
+    }
+
+    nav img {
+        width:50px;
+        order: 0;
     }
 }

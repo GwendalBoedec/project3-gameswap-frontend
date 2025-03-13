@@ -1,0 +1,46 @@
+.signupLoginForms {
+    
+        max-width: 400px;
+        margin: 30px auto;
+        padding: 20px;
+        background-color: #1e1e2f; /* Fond sombre */
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        color: white;
+      }
+
+.form-title {
+    text-align: center;
+    padding-top: 2%;
+}
+
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    margin-bottom: 5px;
+    display: block;
+    color: #ffffff;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #444;
+    background: #2b2b3c;
+    color: white;
+    border-radius: 5px;
+    outline: none;
+    transition: border 0.3s;
+  }
+  
+  .form-input:focus {
+    border-color: #ffd400;
+  }
+
+  .signup-bottom {
+    text-align: center;
+    margin-bottom: 5%;
+  }

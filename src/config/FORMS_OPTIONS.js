@@ -11,4 +11,14 @@ const consoleOptions = [
     { value: "Xbox", label: "Xbox" },
 ];
 
-export default consoleOptions
+const GameStylesOptions = [
+    { value: "adventure", label: "Adventure" },
+    { value: "fight", label: "Fight" },
+    { value: "FPS", label: "FPS" },
+    { value: "platform", label: "Platform" },
+    { value: "racing", label: "Racing" },
+    { value: "RPG", label: "RPG" },
+    { value: "strategy", label: "Strategy" }
+];
+
+export {consoleOptions, GameStylesOptions}

@@ -20,3 +20,18 @@
 img {
     width: 90%;
 }
+
+.header {
+  display: flex;
+}
+
+.textHeader {
+  margin-left: 5%;
+  max-width: 50%;
+  text-align: justify;
+}
+
+.logo{
+  width: 30%;
+  height: 30%;
+}

@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import consoleOptions from "../config/FORMS_OPTIONS";
+import {consoleOptions, GameStylesOptions } from "../config/FORMS_OPTIONS";
 import Select from "react-select";
+import { Button, PasswordInput, Title, MultiSelect } from "@mantine/core";
+import "../styles/signupLoginForms.css"
 
 
 function SignupPage(props) {
@@ -21,7 +23,7 @@ function SignupPage(props) {
     const handleUsername = (e) => setUsername(e.target.value);
     const handleCity = (e) => setCity(e.target.value);
     const handleFavoriteConsoles = (selectedOptions) => setFavoriteConsoles(selectedOptions || []);
-    const handleFavoriteGameStyles = (e) => setFavoriteGameStyles(Array.from(e.target.selectedOptions, option => option.value));
+    const handleFavoriteGameStyles = (selectedOptions) => setFavoriteGameStyles(selectedOptions || []);
 
     const handleSignupSubmit = (e) => {
         e.preventDefault();
@@ -49,73 +51,79 @@ function SignupPage(props) {
     };
 
     return (
-        <div className="">
-            <h1>Sign Up</h1>
+        <div >
+            <Title order={1} className="form-title">Sign Up</Title>
 
-            <form onSubmit={handleSignupSubmit}>
-                <label>Email:</label>
-                <input
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={handleEmail}
-                />
-
-                <label>Password:</label>
-                <input
+            <form className="signupLoginForms" onSubmit={handleSignupSubmit}>
+                <div className="form-group">  
+                    <label className="form-label">Email</label>
+                    <input
+                        className="form-input"
+                        type="email"
+                        name="email"
+                        value={email}
+                        onChange={handleEmail}
+                    />
+                </div>
+                <div className="form-group"> 
+                <label>Password</label>
+                <PasswordInput
+                   
                     type="password"
                     name="password"
                     value={password}
                     onChange={handlePassword}
                 />
-
-                <label>username:</label>
+                 </div>
+                <div className="form-group"> 
+                <label className="form-label">Username</label>
                 <input
+                    className="form-input"
                     type="text"
                     name="username"
                     value={username}
                     onChange={handleUsername}
                 />
-
-                <label>City:</label>
+                 </div>
+                <div className="form-group"> 
+                <label className="form-label">City</label>
                 <input
+                    className="form-input"
                     type="text"
                     name="city"
                     value={city}
                     onChange={handleCity}
                 />
-
-                <label>Favorite Console(s):</label>
-                <Select
-                    options={consoleOptions}
-                    isMulti
+                 </div>
+                <div className="form-group"> 
+                <label className="form-label">Favorite Console(s)</label>
+                <MultiSelect
+                    
+                    data={consoleOptions}
                     value={favoriteConsoles}
-                    onChange={handleFavoriteConsoles} />
-
-
-                <label>Favorite Game Style(s):</label>
-                <select
-
-                    name="favoriteGameStyles"
-                    value={favoriteGameStyles || []}
+                    onChange={handleFavoriteConsoles}
+                    placeholder="choose your favorite consoles"
+                    searchable
+                    clearable />
+                 </div>
+                <div className="form-group"> 
+                <label className="form-label">Favorite Game Style(s):</label>
+                <MultiSelect
+                    
+                    data={GameStylesOptions}
+                    value={favoriteGameStyles}
                     onChange={handleFavoriteGameStyles}
-                    multiple>
-                    <option value="" disabled> select your favorite game style </option>
-                    <option value="adventure"> Adventure </option>
-                    <option value="fight"> Fight </option>
-                    <option value="FPS"> FPS </option>
-                    <option value="platform"> Platform </option>
-                    <option value="racing"> Racing </option>
-                    <option value="RPG"> RPG </option>
-                    <option value="strategy"> Strategy </option>
-                </select>
-
-                <button type="submit">Sign Up</button>
+                    placeholder="choose your favorite game styles"
+                    searchable
+                    clearable />
+                </div>
+                <Button color="#5315c6" type="submit">Sign Up</Button>
             </form>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
-
+            <div className="signup-bottom">
             <p>Already have account?</p>
-            <Link to={"/login"}> Login</Link>
+            <Link to={"/login"}> <Button color="#5315c6"> Login </Button></Link>
+            </div>
         </div>
     )
 }

@@ -2,6 +2,8 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+import { Button, PasswordInput, Title } from "@mantine/core";
+import "../styles/signupLoginForms.css"
 
 function LoginPage(props) {
   const [email, setEmail] = useState("");
@@ -44,32 +46,37 @@ function LoginPage(props) {
 
   return (
 
-    <div className="LoginPage">
-      <h1>Login</h1>
+    <div>
+      <Title className="form-title">Login</Title>
 
-      <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
-        <input
+      <form className="signupLoginForms" onSubmit={handleLoginSubmit}>
+        <div className="form-group">
+        <label className="form-label">Email</label>
+        <input className="form-input"
           type="email"
           name="email"
           value={email}
           onChange={handleEmail}
         />
-
-        <label>Password:</label>
+        </div>
+        <div className="form-group">
+        <label className="form-label">Password:</label>
         <input
+        className="form-input"
           type="password"
           name="password"
           value={password}
           onChange={handlePassword}
         />
-
-        <button type="submit">Login</button>
+        </div>
+       
+        <Button color="#5315c6" type="submit">Login</Button>
       </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
-
+      <div className="signup-bottom">
       <p>Don't have an account yet?</p>
-      <Link to={"/signup"}> Sign Up</Link>
+      <Link to={"/signup"}> <Button color="#5315c6"> Sign Up </Button></Link>
+      </div>
     </div>
 
   )
