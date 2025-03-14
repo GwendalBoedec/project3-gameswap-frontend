@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import "../styles/gameDetailsPage.css"
+import "../styles/gameDetailsPage.css";
+import { Button } from "@mantine/core";
+
 
 function GameDetailsPage() {
 
@@ -48,8 +50,15 @@ function GameDetailsPage() {
                     <p><strong>Year of purchase:</strong> {game.purchaseYear}</p>
                     <p><strong>Is game condition certificated?</strong> {game.conditionCertificate ? "Yes" : " No"}</p>
                     <p><strong>Is owner ok for swaping?</strong> {game.availableForTrade ? "yes, let's talk!" : "No, unless you have a very good offer!"}</p>
-                    <Link to={`/gameslist/${game._id}/request`}> <button> Send a swap request </button> </Link>
-                    <Link to="/myprofile"> <button> Back to myprofile </button> </Link>
+                    <Link to={`/gameslist/${game._id}/request`}><Button 
+                        style={{ margin: '5px' }} 
+                        size="xs"
+                        color="#5315c6">Send a swap request</Button></Link>
+                    <Link to="/myprofile"><Button
+                        style={{ margin: '5px' }} 
+                        size="xs"
+                        color="#5315c6"
+                    >Back to myprofile</Button></Link>
                 </>
 
             )}

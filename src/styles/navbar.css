@@ -48,7 +48,13 @@ span {
 
     .logout {
         position: right;
-        align-self:last baseline;
+        align-items: center;
+    }
+
+    .add-button {
+        position: right;
+        align-items: center;
+
     }
 
 /* Responsive */

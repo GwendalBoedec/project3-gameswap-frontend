@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { Title, Button } from "@mantine/core";
 
 function UpdateGamePage() {
 
@@ -65,17 +66,18 @@ function UpdateGamePage() {
     };
 
     return (
-        <div className="">
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <label>Title</label> <input
+        <div>
+            <Title className="form-title"> Need an update?</Title>
+            <form className="signupLoginForms" onSubmit={handleSubmit(onSubmit)}>
+                <label className="form-label">Title</label> <input className="form-input" 
                     {...register("title", { required: "game title is required" })}
                     placeholder="enter game title" />
                 {errors.title && <p>{errors.title.message}</p>}
-                <label>image url </label> <input
+                <label className="form-label">image url </label> <input className="form-input"
                     {...register("image", { required: "image url is required" })}
                     placeholder="insert image url" />
                 {errors.image && <p>{errors.image.message}</p>}
-                <label>console </label> <select
+                <label className="form-label">console </label> <select className="form-input"
                     {...register("console", { required: "define compatible console" })}
                     //placeholder="enter compatible console" 
                     defaultValue="">
@@ -92,7 +94,7 @@ function UpdateGamePage() {
                     <option value="Xbox"> Xbox </option>
                 </select>
                 {errors.console && <p>{errors.console.message}</p>}
-                <label>Game style </label><select
+                <label className="form-label">Game style </label><select className="form-input"
                     {...register("gameStyle", { required: "define game style" })}
                     //placeholder="enter game style" 
                     defaultValue=""
@@ -108,11 +110,11 @@ function UpdateGamePage() {
                 </select>
 
                 {errors.gameStyle && <p>{errors.gameStyle.message}</p>}
-                <label>Feedback</label><input
+                <label className="form-label">Feedback</label><input className="form-input"
                     {...register("ownerFeedback", { required: "provide feedback" })}
                     placeholder="provide some feedback about this game" />
                 {errors.ownerFeedback && <p>{errors.ownerFeedback.message}</p>}
-                <label>Year of purchase</label><select
+                <label>Year of purchase</label><select className="form-input"
                     {...register("purchaseYear", { required: "provide year of purchase" })}
                     defaultValue={simplifiedDate || ""} >
                     <option value="" disabled>Select the year</option>
@@ -121,7 +123,7 @@ function UpdateGamePage() {
                     ))}
                 </select>
                 {errors.purchaseYear && <p>{errors.purchaseYear.message}</p>}
-                <label>condition</label><select
+                <label className="form-label">condition</label><select className="form-input"
                     {...register("condition", { required: "evaluate game condition" })}
                     defaultValue="">
                     <option value="" disabled> select the state condition of your game </option>
@@ -131,7 +133,7 @@ function UpdateGamePage() {
                     <option value="intact"> Intact </option>
                 </select>
                 {errors.condition && <p>{errors.condition.message}</p>}
-                <label>condition certificate</label><select
+                <label className="form-label">condition certificate</label><select className="form-input"
                     {...register("conditionCertificate", { required: "indicate if game condition has been certificated" })}
                     defaultValue=""
                     placeholder="confirm if game condition has been certified">
@@ -140,7 +142,7 @@ function UpdateGamePage() {
                     <option value="false"> Not Certified </option>
                 </select>
                 {errors.conditionCertificate && <p>{errors.conditionCertificate.message}</p>}
-                <label>Available for trading?</label><select
+                <label className="form-label">Available for trading?</label><select className="form-input"
                     {...register("availableForTrade", { required: "indicate if game is eligible to trading" })}
                     defaultValue="">
                     <option value="" disabled> confirm if game is available for trading </option>
@@ -148,10 +150,13 @@ function UpdateGamePage() {
                     <option value="false"> No, it's too good to be swaped! </option>
                 </select>
                 {errors.availableForTrade && <p>{errors.availableForTrade.message}</p>}
-
-                <button type="submit"> update game </button>
+            <div className="update-button"> 
+                <Button color="#5315c6" type="submit"> update game </Button>
+            </div>
             </form>
-            <Link to={`/gameslist/${gameId}`}> <button> Back to game details </button> </Link>
+            <div className="bottom-button">
+            <Link to={`/gameslist/${gameId}`}> <Button color="#5315c6"> Back to game details </Button> </Link>
+            </div>
         </div>
     )
 }

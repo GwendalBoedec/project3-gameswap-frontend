@@ -1,6 +1,5 @@
 .gameCardOverview {
-    width: 20%;
-    min-width: 40vw;
+    min-width: 23vw;
     margin: 10px;
     padding: 2px;
     border: 2px #100a68d6;
@@ -8,17 +7,37 @@
     text-align: center;
     background: linear-gradient(to right, #0b0d7628, #c9ccef1f);
     box-shadow: 0px 4px 10px rgba(44, 52, 100, 0.579);
-    flex: 0 1 29%;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
    
   }
 
+  .game-check {
+    color: #2b2b3c;
+    font-weight: lighter;
+  }
+
+  .game-list-container {
+    margin: 0px;
+  }
+  .game-list {
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.6em;
+    color: #5315c6; /* Couleur du texte */
+    text-decoration: none; /* Retirer la sous-ligne */
+    font-weight: bold; /* Mettre le texte en gras */
+}
+
+.game-list:hover {
+    color: #fba93d; /* Couleur du texte au survol */
+}
+
   .gameCardOverview h3 {
-    font-size: 3vw;
+    font-size: 2em;
   }
 
   .gameCardOverview p {
-    font-size: 2vw;
+    font-size: 1.6em;
     margin: 5px
   }
 
@@ -41,7 +60,7 @@
     
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex: 0 1 29%;
     gap: 10px;  
     justify-content: center;
   }

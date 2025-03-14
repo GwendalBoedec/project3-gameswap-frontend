@@ -40,14 +40,20 @@ function CommunityPage() {
                         <div key={user._id} className="gameCardOverview">
                             <h3>{user.username}</h3>
                             <p><strong>city:</strong> {user.city}</p>
-                            <p><strong>favorite game style(s):</strong> {user.favoriteGameStyles}</p>
-                            <p><strong>favorite console(s):</strong> {user.favoriteConsoles}</p>
-                            <p><strong>Current game collection:</strong> {user.ownedGames?.length > 0 ? (
+                            <p><strong>favorite game style(s)</strong> </p>
+                            <p>{user.favoriteGameStyles.join(", ")}</p>
+                            <p><strong>favorite console(s)</strong> </p>
+                            <p> {user.favoriteConsoles.join(", ")}</p>
+                            <p><strong>Current game collection</strong> </p>
+                            <p> {user.ownedGames.length} game(s)</p>
+                            <p>{user.ownedGames?.length > 0 ? (
                                 user.ownedGames.map((game) => (
-                                    <Link key={game._id} to={`/gameslist/${game._id}`}> {game.title} </Link>
+                                    <p className="game-list-container"key={game._id}>
+                                    <Link className="game-list"  to={`/gameslist/${game._id}`}> {game.title} </Link>
+                                    </p>
                                 ))
                             ) : (
-                                <span>No games available</span>
+                                <span className="game-check">No games available</span>
                             )}
                             </p>
                         </div>

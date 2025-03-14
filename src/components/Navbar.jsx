@@ -38,9 +38,10 @@ function Navbar() {
                                 Our Community
                             </NavLink>
                         </li>
-                        <li className="add-button">
+                        <li className="logout" >
                             <NavLink to="/myprofile/addgame">
-                                <Button color="#5315c6">Add a game to your collection</Button>
+                                <Button 
+                                color="#5315c6">Add a game to your collection</Button>
                             </NavLink>
                         </li>
                         <li className="logout">

@@ -3,7 +3,29 @@
     padding: 10px;
     box-shadow: 0px 2px 3px grey;
     margin: 0 auto;
-    margin-bottom: 20px;
-    background: #94a7c8;
-    border-radius: 4px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    background: linear-gradient(to right, #0b0d7628, #c9ccef1f);
+    border-radius: 7px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(44, 52, 100, 0.579);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+
+
+.gameCardOverview {
+
+    flex: 1 1 300px !important; 
+    max-width: 400px !important;
+    width: 100%  !important;
+    margin: 10px;
+    padding: 2px;
+    border: 2px #100a68d6;
+    border-radius: 7px;
+    text-align: center;
+   
+
+   
+  }
