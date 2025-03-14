@@ -73,7 +73,7 @@ function LoginPage(props) {
         <Button color="#5315c6" type="submit">Login</Button>
       </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
-      <div className="signup-bottom">
+      <div className="bottom-button">
       <p>Don't have an account yet?</p>
       <Link to={"/signup"}> <Button color="#5315c6"> Sign Up </Button></Link>
       </div>

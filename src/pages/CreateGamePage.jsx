@@ -2,7 +2,8 @@ import axios from "axios";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "../styles/Forms.css"
-import { Title } from "@mantine/core";
+import { Title, Button } from "@mantine/core";
+
 
 
 
@@ -142,9 +143,11 @@ function CreateGamePage() {
                 </select>
                 {errors.availableForTrade && <p>{errors.availableForTrade.message}</p>}
                 </div>
-                <button type="submit"> create game </button>
+                <Button color="#5315c6" type="submit"> create game </Button>
             </form>
-            <Link to="/myprofile"> <button> Back to my profile </button> </Link>
+        <div className="bottom-button">
+            <Link to="/myprofile"> <Button color="#5315c6"> Back to my profile </Button> </Link>
+        </div>
         </div>
 
     )

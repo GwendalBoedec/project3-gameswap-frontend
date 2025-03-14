@@ -95,7 +95,7 @@ function RequestGamePage() {
                 </div>
                 <div className="form-group">
                 <label className="form-label">Message</label> <input {...register("comment", { required: "pick a game among your collection" })}
-                    className="form-input" placeholder={`leave a message to the owner of ${requestedGame.title}`} />
+                    className="form-input" placeholder="leave a message to the owner" />
                 {errors.comment && <p>{errors.comment.message}</p>}
                 </div>
                 <div className="form-group">

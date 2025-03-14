@@ -49,7 +49,7 @@ function GameDetailsPage() {
                     <p><strong>Is game condition certificated?</strong> {game.conditionCertificate ? "Yes" : " No"}</p>
                     <p><strong>Is owner ok for swaping?</strong> {game.availableForTrade ? "yes, let's talk!" : "No, unless you have a very good offer!"}</p>
                     <Link to={`/gameslist/${game._id}/request`}> <button> Send a swap request </button> </Link>
-                    <Link to="/community"> <button> Back to previous page </button> </Link>
+                    <Link to="/myprofile"> <button> Back to myprofile </button> </Link>
                 </>
 
             )}

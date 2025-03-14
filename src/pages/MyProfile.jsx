@@ -17,7 +17,8 @@ function MyProfile() {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
+    const getUserData = () => {
+        
         // get user's games
         axios.get(`${import.meta.env.VITE_API_URL}/api/myprofile/games`, {
             headers: { Authorization: `Bearer ${localStorage.getItem("authToken")}` }
@@ -32,8 +33,6 @@ function MyProfile() {
             });
 
        
-
-
 
         // get user's received requests
         axios.get(`${import.meta.env.VITE_API_URL}/api/myprofile/receivedRequests`, {
@@ -60,20 +59,25 @@ function MyProfile() {
                 console.log("error while retrieving your sent requests", err)
             });
 
-    }, [])
+    };
 
+
+    useEffect(() => {getUserData()}, [])
     //magaging game delete
+    
     const handleGameDelete = async (gameId) => {
         try {
             const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/gameslist/${gameId}`);
             console.log(response);
-            alert("data succesfully deleted")
-            navigate("/myprofile")
+            alert("data succesfully deleted");
+           getUserData();
         } catch (err) {
             console.log(err);
             alert("an error prevents from deleting new item")
         }
     };
+
+
 
     // to manage deal acceptation
     const handleAccept = async (requestedGameId, offeredGameId, requestId, buyerId, sellerId) => {
@@ -180,11 +184,11 @@ function MyProfile() {
             {userGames.length > 0 ? (
                 userGames.map((game) => (
                     <div key={game._id} className="gameCardOverview">
-                        <p><strong>Title:</strong> {game.title}</p>
-                        <img src={game.image} alt="game cover" />
-                        <Link to={`/gameslist/${game._id}`}> <Button> check more details </Button> </Link>
-                        <Link to={`/myprofile/${game._id}/update`}><Button>Update game?</Button></Link>
-                        <Button color="#553333" onClick={() => handleGameDelete(game._id)}>Delete item</Button>
+                        <p><strong>{game.title}</strong> </p>
+                        <img src={game.image} alt="game cover"/>
+                        <Link to={`/gameslist/${game._id}`}><Button style={{ margin: '5px' }} size="xs" color="#5315c6"> check more details</Button></Link>
+                        <Link to={`/myprofile/${game._id}/update`}><Button style={{ margin: '5px' }} size="xs" color="#5315c6">Update game?</Button></Link>
+                        <Button style={{ margin: '5px' }} size="xs" color="#ff5757" onClick={() => handleGameDelete(game._id)}>Delete item</Button>
                     </div>
         
                 ))
@@ -193,58 +197,91 @@ function MyProfile() {
             )}
             
             </div>
-            <div className="add-game-button"> 
+            <div className="add-button"> 
             <Link to="/myprofile/addgame">
-                <Button>Want to expose a new game?</Button>
+                <Button color="#5315c6">Want to expose a new game?</Button>
             </Link>
             </div>
-            <h2> My Open Requests </h2>
+            <div className="textHeader">
+            <h2> My Open Swap Requests </h2>
             <h3>Received Requests</h3>
+            </div>
+            <div className="profileContainer">
             {receivedRequests.length > 0 ? (
                 receivedRequests.map((receivedRequest) => (
                     <div key={receivedRequest._id} className="gameCardOverview">
-                        <p><strong>Game Targeted:</strong> {receivedRequest.requestedGame.title}</p>
+                        <p><strong>Request Sent By</strong> </p> 
+                        <p> {receivedRequest.createdBy.username}</p>
+                        <p><strong>Game Targeted</strong> </p>
+                        <p>  {receivedRequest.requestedGame.title}</p>
                         <img src={receivedRequest.requestedGame.image} alt="game cover" />
-                        <p><strong>Game offered for swapping:</strong> {receivedRequest.offeredGame.title}</p>
+                        <p><strong>Game offered for swapping</strong> </p>
+                        <p>  {receivedRequest.offeredGame.title}</p>
+                        <p><strong>Message from {receivedRequest.createdBy.username}</strong> </p>
+                        <p>   {receivedRequest.comment}</p>
+                        <p><strong>Contact details of the requestor</strong> </p>
+                        <p>   {receivedRequest.contactDetails}</p>
                         <Button
-
+                            style={{ margin: '5px' }} 
+                            size="xs"
+                            color="#5315c6"
                             onClick={() => handleAccept(receivedRequest.requestedGame._id, receivedRequest.offeredGame._id, receivedRequest._id, receivedRequest.offeredGame.owner, receivedRequest.requestedGame.owner)}
                             disabled={loading}
                             key={`accept-${receivedRequest._id}`}
                         >
                             {loading ? "Processing..." : "Confirm Swap Deal"}
                         </Button>
-                        <button onClick={() => handleReject(receivedRequest._id)}
+                        <Button 
+                        style={{ margin: '5px' }} 
+                        size="xs"
+                        color="#5315c6"
+                        onClick={() => handleReject(receivedRequest._id)}
                             disabled={loading}
                             key={`reject-${receivedRequest._id}`}>
                             {loading ? "Processing..." : "Refuse Swap Deal"}
-                        </button>
+                        </Button>
                     </div>
+               
 
 
                 ))
             ) : (
-                <p>You haven't received any swap requests yet.</p>
+                <p>Sorry, you haven't received any swap requests yet.</p>
             )}
+             </div>
+             <div className="textHeader">
             <h3>Sent Requests</h3>
+            </div>
+            <div className="profileContainer">
             {sentRequests.length > 0 ? (
                 sentRequests.map((sentRequest) => (
                     <div key={sentRequest._id} className="gameCardOverview">
                         {sentRequest.requestedGame ? (
                             <>
-                                <p><strong>Game targeted:</strong> {sentRequest.requestedGame.title}</p>
+                                <p><strong>Game targeted</strong> </p>
+                                <p> {sentRequest.requestedGame.title}</p>
                                 <img src={sentRequest.requestedGame.image} alt="game cover" />
-                                <p><strong>Game offered for swapping:</strong> {sentRequest.offeredGame.title}</p>
+                                <p><strong>Game offered for swapping</strong> </p>
+                                <p>{sentRequest.offeredGame.title}</p>
+                                <p><strong>My Message</strong> </p>
+                                <p>{sentRequest.comment}</p>
+                                <p><strong>Contact provided</strong> </p>
+                                <p>{sentRequest.contactDetails}</p>
                             </>
                         ) : (
                             <p>Sent request details are missing</p>
                         )}
-                        <Link to={`/`}> <button>Check more details</button> </Link>
+                       
                     </div>
                 ))
             ) : (
-                <p>You haven't sent any swap requests yet.</p>
+                <div className="bottom-button">
+                <p>You haven't sent any swap requests yet. Want to have a look at the games of our community? </p>
+                <Link to="/community"> <Button color="#5315c6">Check Our Community</Button> </Link>
+                </div>
+
             )}
+            </div>
         
         </>
     )
