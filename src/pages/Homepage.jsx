@@ -33,7 +33,7 @@ function Homepage() {
     return (
         <>
             <header className="header"> 
-                <img className="logo" src="/logo swap.png" alt="swapgame logo"></img>
+                <img className="homelogo" src="/logo swap.png" alt="swapgame logo"></img>
                 <section className="textHeader"> 
                 <h1>Share, Swap & Play!</h1>
                 <h2> GameSwa:p: For the love of gaming, in memory of the good old days</h2>
