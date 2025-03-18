@@ -17,7 +17,7 @@ function Navbar() {
 
                 <li>
                     <NavLink to="/" >
-                        <img src="./joystick logo navbar.png"></img>
+                        <img src="./joystick logo navbar.png" alt="logo"></img>
                     </NavLink>
                 </li>
 

@@ -188,7 +188,7 @@ function MyProfile() {
                         <img src={game.image} alt="game cover"/>
                         <Link to={`/gameslist/${game._id}`}><Button style={{ margin: '5px' }} size="xs" color="#5315c6"> check more details</Button></Link>
                         <Link to={`/myprofile/${game._id}/update`}><Button style={{ margin: '5px' }} size="xs" color="#5315c6">Update game?</Button></Link>
-                        <Button style={{ margin: '5px' }} size="xs" color="#ff5757" onClick={() => handleGameDelete(game._id)}>Delete item</Button>
+                        <Button style={{ margin: '5px' }} size="xs" color="#bb0b0b" onClick={() => handleGameDelete(game._id)}>Delete item</Button>
                     </section>
         
                 ))
