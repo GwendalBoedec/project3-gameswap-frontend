@@ -11,14 +11,22 @@ const consoleOptions = [
     { value: "Xbox", label: "Xbox" },
 ];
 
-const GameStylesOptions = [
+const gameStylesOptions = [
     { value: "adventure", label: "Adventure" },
     { value: "fight", label: "Fight" },
     { value: "FPS", label: "FPS" },
     { value: "platform", label: "Platform" },
     { value: "racing", label: "Racing" },
     { value: "RPG", label: "RPG" },
+    { value: "sport", label: "Sport" },
     { value: "strategy", label: "Strategy" }
 ];
 
-export {consoleOptions, GameStylesOptions}
+const conditionOptions = [
+    { value: "OK", label: "OK" },
+    { value: "good", label: "Good" },
+    { value: "very good", label: "Very good" },
+    { value: "intact", label: "Intact" },
+];
+
+export {consoleOptions, gameStylesOptions, conditionOptions}

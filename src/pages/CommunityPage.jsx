@@ -43,7 +43,7 @@ function CommunityPage() {
                             <p><strong>favorite game style(s)</strong> </p>
                             <p>{user.favoriteGameStyles.join(", ")}</p>
                             <p><strong>favorite console(s)</strong> </p>
-                            <p> {user.favoriteConsoles.join(", ")}</p>
+                            <p>{user.favoriteConsoles.join(", ")}</p>
                             <p><strong>Current game collection</strong> </p>
                             <p> {user.ownedGames.length} game(s)</p>
                             <p>{user.ownedGames?.length > 0 ? (

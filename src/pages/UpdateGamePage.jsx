@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Title, Button } from "@mantine/core";
+import { gameStylesOptions, consoleOptions, conditionOptions } from "../config/FORMS_OPTIONS";
 
 function UpdateGamePage() {
 
@@ -39,8 +40,6 @@ function UpdateGamePage() {
 
                 reset(updatedData);
 
-
-
             } catch (err) {
                 console.log("oops something wrong happened when retrieving game details", err);
                 alert("an error prevents from getting item details")
@@ -56,12 +55,12 @@ function UpdateGamePage() {
         try {
             const response = await axios.put(`${import.meta.env.VITE_API_URL}/api/gameslist/${gameId}`, data);
             console.log(response.data);
-            alert("data succesfully sent")
+            alert("game succesfully updated")
             reset(); // Réinitialisation du formulaire après soumission
             navigate(`/gameslist/${gameId}`)
         } catch (err) {
             console.log(err);
-            alert("an error prevents from creating new item")
+            alert("an error prevents from updating game")
         }
     };
 
@@ -69,7 +68,7 @@ function UpdateGamePage() {
         <div>
             <Title className="form-title"> Need an update?</Title>
             <form className="signupLoginForms" onSubmit={handleSubmit(onSubmit)}>
-                <label className="form-label">Title</label> <input className="form-input" 
+                <label className="form-label">Title</label> <input className="form-input"
                     {...register("title", { required: "game title is required" })}
                     placeholder="enter game title" />
                 {errors.title && <p>{errors.title.message}</p>}
@@ -82,16 +81,11 @@ function UpdateGamePage() {
                     //placeholder="enter compatible console" 
                     defaultValue="">
                     <option value="" disabled> select compatible console for this game </option>
-                    <option value="gameboy"> Gameboy </option>
-                    <option value="gameboy advanced"> Gameboy advanced </option>
-                    <option value="gamecube"> Gamecube </option>
-                    <option value="NES"> NES </option>
-                    <option value="nintendo 64"> Nintendo 64 </option>
-                    <option value="super nintendo"> Super Nintendo </option>
-                    <option value="playstation 1"> Playstation 1 </option>
-                    <option value="playstation 2"> Playstation 2 </option>
-                    <option value="PSP"> PSP </option>
-                    <option value="Xbox"> Xbox </option>
+                    {consoleOptions.map((console) => (
+                        <option key={console.value} value={console.value}>
+                            {console.label}
+                        </option>
+                    ))}
                 </select>
                 {errors.console && <p>{errors.console.message}</p>}
                 <label className="form-label">Game style </label><select className="form-input"
@@ -100,13 +94,9 @@ function UpdateGamePage() {
                     defaultValue=""
                 >
                     <option value="" disabled> select main style of the game </option>
-                    <option value="adventure"> Adventure </option>
-                    <option value="fight"> Fight </option>
-                    <option value="FPS"> FPS </option>
-                    <option value="platform"> Platform </option>
-                    <option value="racing"> Racing </option>
-                    <option value="RPG"> RPG </option>
-                    <option value="strategy"> Strategy </option>
+                    {gameStylesOptions.map((gameStyle) => (
+                        <option key={gameStyle.value} value={gameStyle.value}> {gameStyle.label} </option>
+                    ))}
                 </select>
 
                 {errors.gameStyle && <p>{errors.gameStyle.message}</p>}
@@ -127,10 +117,9 @@ function UpdateGamePage() {
                     {...register("condition", { required: "evaluate game condition" })}
                     defaultValue="">
                     <option value="" disabled> select the state condition of your game </option>
-                    <option value="ok"> OK </option>
-                    <option value="good"> Good </option>
-                    <option value="very good"> Very good </option>
-                    <option value="intact"> Intact </option>
+                    {conditionOptions.map((condition) => (
+                        <option key={condition.value} value={condition.value}>{condition.label}</option>
+                    ))}
                 </select>
                 {errors.condition && <p>{errors.condition.message}</p>}
                 <label className="form-label">condition certificate</label><select className="form-input"
@@ -150,12 +139,12 @@ function UpdateGamePage() {
                     <option value="false"> No, it's too good to be swaped! </option>
                 </select>
                 {errors.availableForTrade && <p>{errors.availableForTrade.message}</p>}
-            <div className="update-button"> 
-                <Button color="#5315c6" type="submit"> update game </Button>
-            </div>
+                <div className="update-button">
+                    <Button color="#5315c6" type="submit"> update game </Button>
+                </div>
             </form>
             <div className="bottom-button">
-            <Link to={`/gameslist/${gameId}`}> <Button color="#5315c6"> Back to game details </Button> </Link>
+                <Link to={`/gameslist/${gameId}`}> <Button color="#5315c6"> Back to game details </Button> </Link>
             </div>
         </div>
     )

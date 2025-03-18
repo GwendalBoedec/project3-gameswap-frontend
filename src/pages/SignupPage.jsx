@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import {consoleOptions, GameStylesOptions } from "../config/FORMS_OPTIONS";
+import { consoleOptions, gameStylesOptions } from "../config/FORMS_OPTIONS";
 import Select from "react-select";
 import { Button, PasswordInput, Title, MultiSelect } from "@mantine/core";
 import "../styles/Forms.css"
@@ -25,6 +25,48 @@ function SignupPage(props) {
     const handleFavoriteConsoles = (selectedOptions) => setFavoriteConsoles(selectedOptions || []);
     const handleFavoriteGameStyles = (selectedOptions) => setFavoriteGameStyles(selectedOptions || []);
 
+
+    const dropdownStyles = {
+        control: (styles, {hasValue}) => ({
+            ...styles,
+            backgroundColor: "#2b2b3c", // Fond du champ sélectionné
+            borderColor: "#444", // Bordure plus foncée
+            boxShadow: "none",
+            ":focus": {
+                boxShadow: "none"
+            },
+            ":hover": {
+                borderColor: "#ffd400"
+            }, // Bordure dorée au survol
+        }),
+        menu: (styles) => ({
+            ...styles,
+            backgroundColor: "#2b2b3c", // Fond de la liste déroulante
+        }),
+        option: (styles, { isFocused, isSelected }) => ({
+            ...styles,
+            backgroundColor: isSelected ? "#ffd400" : isFocused ? "#555" : "#2b2b3c", // Fond différent si sélectionné ou survolé
+            color: "white", // Texte en blanc
+            cursor: "pointer",
+        }),
+        multiValue: (styles) => ({
+            ...styles,
+            backgroundColor: "#444", // Fond des tags sélectionnés
+        }),
+        multiValueLabel: (styles) => ({
+            ...styles,
+            color: "white", // Texte des tags
+        }),
+        multiValueRemove: (styles) => ({
+            ...styles,
+            color: "white",
+            ":hover": {
+                backgroundColor: "#555",
+                color: "#ff5757",
+            },
+        }),
+    };
+
     const handleSignupSubmit = (e) => {
         e.preventDefault();
         // Create an object representing the request body
@@ -33,8 +75,8 @@ function SignupPage(props) {
             password,
             username,
             city,
-            favoriteConsoles: favoriteConsoles.map(option => option.value),
-            favoriteGameStyles
+            favoriteConsoles: favoriteConsoles.map(console => console.value),
+            favoriteGameStyles: favoriteGameStyles.map(gameStyle => gameStyle.value)
         };
 
         // Make an axios request to the API
@@ -55,7 +97,7 @@ function SignupPage(props) {
             <Title order={1} className="form-title">Sign Up</Title>
 
             <form className="signupLoginForms" onSubmit={handleSignupSubmit}>
-                <div className="form-group">  
+                <div className="form-group">
                     <label className="form-label">Email</label>
                     <input
                         className="form-input"
@@ -65,90 +107,69 @@ function SignupPage(props) {
                         onChange={handleEmail}
                     />
                 </div>
-                <div className="form-group"> 
-                <label>Password</label>
-                <PasswordInput
-                   
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={handlePassword}
-                />
-                 </div>
-                <div className="form-group"> 
-                <label className="form-label">Username</label>
-                <input
-                    className="form-input"
-                    type="text"
-                    name="username"
-                    value={username}
-                    onChange={handleUsername}
-                />
-                 </div>
-                <div className="form-group"> 
-                <label className="form-label">City</label>
-                <input
-                    className="form-input"
-                    type="text"
-                    name="city"
-                    value={city}
-                    onChange={handleCity}
-                />
-                 </div>
-                <div className="form-group"> 
-                <label className="form-label">Favorite Console(s)</label>
-                <MultiSelect
+                <div className="form-group">
+                    <label>Password</label>
+                    <PasswordInput
+
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={handlePassword}
+                    />
+                </div>
+                <div className="form-group">
+                    <label className="form-label">Username</label>
+                    <input
+                        className="form-input"
+                        type="text"
+                        name="username"
+                        value={username}
+                        onChange={handleUsername}
+                    />
+                </div>
+                <div className="form-group">
+                    <label className="form-label">City</label>
+                    <input
+                        className="form-input"
+                        type="text"
+                        name="city"
+                        value={city}
+                        onChange={handleCity}
+                    />
+                </div>
+                <div className="form-group">
+                <label className="form-label">Game style </label>
+                    <Select
+                        className="form-input"
+                        isMulti
+                        options={consoleOptions}
+                        value={favoriteConsoles}
+                        onChange={handleFavoriteConsoles}
+                        placeholder="Choose your favorite consoles"
+                        styles={dropdownStyles}
+                        />
+                </div>
+                <div className="form-group">
+                    <label className="form-label">Game style </label>
+                    <Select
+                        className="form-input"
+                        isMulti
+                        options={gameStylesOptions}
+                        value={favoriteGameStyles}
+                        onChange={handleFavoriteGameStyles}
+                        placeholder="Choose your favorite game styles"
+                        styles={dropdownStyles}
+                        />
                     
-                    data={consoleOptions}
-                    value={favoriteConsoles}
-                    onChange={handleFavoriteConsoles}
-                    placeholder="choose your favorite consoles"
-                    searchable
-                    clearable />
-                 </div>
-                <div className="form-group"> 
-                <label >Favorite Game Style(s):</label>
-                <MultiSelect
-                    data={GameStylesOptions}
-                    value={favoriteGameStyles}
-                    onChange={handleFavoriteGameStyles}
-                    placeholder="choose your favorite game styles"
-                    sx={{
-                        input: {
-                          borderColor: '#444 !important',
-                          '&:focus': {
-                            borderColor: "#ffd400 !important",
-                          },
-                          backgroundColor: '#2b2b3c !important',
-                          color: '#fff !important', // Texte en blanc pour lisibilité
-                        },
-                        dropdown: { 
-                          backgroundColor: '#fff !important', 
-                          border: '1px solid #444 !important', 
-                        },
-                        item: { 
-                          color: '#000 !important', // Texte noir pour lisibilité
-                          '&[data-hovered]': {
-                            backgroundColor: '#ffd400 !important', // Fond jaune au survol
-                            color: '#000 !important', // Texte noir pour contraste
-                          },
-                        },
-                        value: {
-                          color: '#fff !important', // Texte blanc pour l'élément sélectionné
-                          backgroundColor: '#444 !important', // Fond foncé pour contraste
-                          borderRadius: '4px', 
-                          padding: '2px 6px' 
-                        },
-                      }}
-                    searchable
-                    clearable />
+
+
                 </div>
                 <Button color="#5315c6" type="submit">Sign Up</Button>
             </form>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
             <div className="bottom-button">
-            <p>Already have account?</p>
-            <Link to={"/login"}> <Button color="#5315c6"> Login </Button></Link>
+                <p>Already have account?</p>
+                <Link to={"/login"}> <Button color="#5315c6"> Login </Button></Link>
             </div>
         </div>
     )
