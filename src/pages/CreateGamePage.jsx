@@ -40,22 +40,22 @@ function CreateGamePage() {
     };
 
     return (
-        <div>
+        <main>
             <Title className="form-title">Register a New Game</Title>
             <form className="signupLoginForms" onSubmit={handleSubmit(onSubmit)}>
-                <div className="form-group">
+                <section className="form-group">
                     <label className="form-label">Title:</label> <input className="form-input"
                         {...register("title", { required: "game title is required" })}
                         placeholder="enter game title" />
                     {errors.title && <p>{errors.title.message}</p>}
-                </div>
-                <div className="form-group">
+                </section>
+                <section className="form-group">
                     <label className="form-label">image url: </label> <input className="form-input"
                         {...register("image", { required: "image url is required" })}
                         placeholder="insert image url" />
                     {errors.image && <p>{errors.image.message}</p>}
-                </div>
-                <div className="form-group">
+                </section>
+                <section className="form-group">
                     <label className="form-label">console </label>
                     <select className="form-input"
                         {...register("console", { required: "define compatible console" })}
@@ -70,8 +70,8 @@ function CreateGamePage() {
 
                     </select>
                     {errors.console && <p>{errors.console.message}</p>}
-                </div>
-                <div className="form-group">
+                </section>
+                <section className="form-group">
                     <label className="form-label">Game style </label><select className="form-input"
                         {...register("gameStyle", { required: "define game style" })}
                         defaultValue="">
@@ -84,14 +84,14 @@ function CreateGamePage() {
                     </select>
 
                     {errors.gameStyle && <p>{errors.gameStyle.message}</p>}
-                </div>
-                <div className="form-group">
+                </section>
+                <section className="form-group">
                     <label className="form-label">Feedback</label><input className="form-input"
                         {...register("ownerFeedback", { required: "provide feedback" })}
                         placeholder="provide some feedback about this game" />
                     {errors.ownerFeedback && <p>errors.ownerFeedback.message</p>}
-                </div>
-                <div className="form-group">
+                </section>
+                <section className="form-group">
                     <label className="form-label">Year of purchase</label><select className="form-input"
                         {...register("purchaseYear", { required: "provide year of purchase" })}
                         placeholder="indicate year of purchase" >
@@ -103,8 +103,8 @@ function CreateGamePage() {
 
 
                     {errors.purchaseYear && <p>{errors.purchaseYear.message}</p>}
-                </div>
-                <div className="form-group">
+                </section>
+                <section className="form-group">
                     <label className="form-label">condition</label><select className="form-input"
                         {...register("condition", { required: "evaluate game condition" })}
                         defaultValue="">
@@ -114,8 +114,8 @@ function CreateGamePage() {
                         ))}
                     </select>
                     {errors.condition && <p>{errors.condition.message}</p>}
-                </div>
-                <div className="form-group">
+                </section>
+                <section className="form-group">
                     <label className="form-label">condition certificate</label><select className="form-input"
                         {...register("conditionCertificate", { required: "indicate if game condition has been certificated" })}
                         defaultValue=""
@@ -125,8 +125,8 @@ function CreateGamePage() {
                         <option value="false"> Not Certified </option>
                     </select>
                     {errors.conditionCertificate && <p>{errors.conditionCertificate.message}</p>}
-                </div>
-                <div className="form-group">
+                </section>
+                <section className="form-group">
                     <label className="form-label">Available for trading?</label><select className="form-input"
                         {...register("availableForTrade", { required: "indicate if game is eligible to trading" })}
                         defaultValue="">
@@ -135,13 +135,13 @@ function CreateGamePage() {
                         <option value="false"> No, it's too good to be swaped! </option>
                     </select>
                     {errors.availableForTrade && <p>{errors.availableForTrade.message}</p>}
-                </div>
+                </section>
                 <Button color="#5315c6" type="submit"> create game </Button>
             </form>
-            <div className="bottom-button">
+            <section className="bottom-button">
                 <Link to="/myprofile"> <Button color="#5315c6"> Back to my profile </Button> </Link>
-            </div>
-        </div>
+            </section>
+        </main>
 
     )
 }

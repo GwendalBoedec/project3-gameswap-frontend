@@ -43,20 +43,20 @@ function Homepage() {
             </header>
             
             <h2>Have a look at some of the games shared by our community</h2>
-            <div className="gamesContainer">
+            <main className="gamesContainer">
                 {games.map((game, i) => {
                     return (
 
-                        <div key={i} className="gameCardOverview">
+                        <section key={i} className="gameCardOverview">
                             <h3>{game.title}</h3>
                             <p><strong> {game.console} </strong> </p>
                             <img src={game.image} alt="game cover" />
                            
-                        </div>
+                        </section>
 
                     )
                 })}
-            </div>
+            </main>
         </>
     )
 }

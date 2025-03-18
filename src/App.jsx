@@ -7,7 +7,6 @@ import { Route, Routes } from 'react-router-dom'
 import CreateGamePage from './pages/CreateGamePage'
 import UpdateGamePage from './pages/UpdateGamePage'
 import RequestGamePage from './pages/RequestGamePage'
-import RequestListPage from './pages/RequestsListPage'
 import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
 import MyProfile from './pages/MyProfile'
@@ -32,7 +31,6 @@ function App() {
         <Route path="/myprofile/addgame" element={<CreateGamePage />} />
         <Route path="/myprofile/:gameId/update" element={<UpdateGamePage />} />
         <Route path="/gameslist/:gameId/request" element={<RequestGamePage />} />
-        <Route path="/myprofile/requests" element={<RequestListPage />} />
         <Route path="/community" element={<CommunityPage />} />
       </Routes>
       

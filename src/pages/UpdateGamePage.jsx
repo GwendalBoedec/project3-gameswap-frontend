@@ -65,7 +65,7 @@ function UpdateGamePage() {
     };
 
     return (
-        <div>
+        <main>
             <Title className="form-title"> Need an update?</Title>
             <form className="signupLoginForms" onSubmit={handleSubmit(onSubmit)}>
                 <label className="form-label">Title</label> <input className="form-input"
@@ -139,14 +139,14 @@ function UpdateGamePage() {
                     <option value="false"> No, it's too good to be swaped! </option>
                 </select>
                 {errors.availableForTrade && <p>{errors.availableForTrade.message}</p>}
-                <div className="update-button">
+                <section className="update-button">
                     <Button color="#5315c6" type="submit"> update game </Button>
-                </div>
+                </section>
             </form>
-            <div className="bottom-button">
+            <section className="bottom-button">
                 <Link to={`/gameslist/${gameId}`}> <Button color="#5315c6"> Back to game details </Button> </Link>
-            </div>
-        </div>
+            </section>
+        </main>
     )
 }
 

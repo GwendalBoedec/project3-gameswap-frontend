@@ -172,24 +172,24 @@ function MyProfile() {
 
     return (
     <>
-        <div className="textHeader">
+        <header className="textHeader">
         <h1> What's up? </h1>
         <h2> My Game Collection </h2>
 
-        </div>
+        </header>
 
         <div className="profileContainer">
            
             {errorMessage && <p>{errorMessage}</p>}
             {userGames.length > 0 ? (
                 userGames.map((game) => (
-                    <div key={game._id} className="gameCardOverview">
+                    <section key={game._id} className="gameCardOverview">
                         <p><strong>{game.title}</strong> </p>
                         <img src={game.image} alt="game cover"/>
                         <Link to={`/gameslist/${game._id}`}><Button style={{ margin: '5px' }} size="xs" color="#5315c6"> check more details</Button></Link>
                         <Link to={`/myprofile/${game._id}/update`}><Button style={{ margin: '5px' }} size="xs" color="#5315c6">Update game?</Button></Link>
                         <Button style={{ margin: '5px' }} size="xs" color="#ff5757" onClick={() => handleGameDelete(game._id)}>Delete item</Button>
-                    </div>
+                    </section>
         
                 ))
             ) : (
@@ -197,19 +197,19 @@ function MyProfile() {
             )}
             
             </div>
-            <div className="add-button"> 
+            <section className="add-button"> 
             <Link to="/myprofile/addgame">
                 <Button color="#5315c6">Want to expose a new game?</Button>
             </Link>
-            </div>
-            <div className="textHeader">
+            </section>
+            <section className="textHeader">
             <h2> My Open Swap Requests </h2>
             <h3>Received Requests</h3>
-            </div>
+            </section>
             <div className="profileContainer">
             {receivedRequests.length > 0 ? (
                 receivedRequests.map((receivedRequest) => (
-                    <div key={receivedRequest._id} className="gameCardOverview">
+                    <section key={receivedRequest._id} className="gameCardOverview">
                         <p><strong>Request Sent By</strong> </p> 
                         <p> {receivedRequest.createdBy.username}</p>
                         <p><strong>Game Targeted</strong> </p>
@@ -240,7 +240,7 @@ function MyProfile() {
                             key={`reject-${receivedRequest._id}`}>
                             {loading ? "Processing..." : "Refuse Swap Deal"}
                         </Button>
-                    </div>
+                    </section>
                
 
 
@@ -249,13 +249,13 @@ function MyProfile() {
                 <p>Sorry, you haven't received any swap requests yet.</p>
             )}
              </div>
-             <div className="textHeader">
+             <section className="textHeader">
             <h3>Sent Requests</h3>
-            </div>
+            </section>
             <div className="profileContainer">
             {sentRequests.length > 0 ? (
                 sentRequests.map((sentRequest) => (
-                    <div key={sentRequest._id} className="gameCardOverview">
+                    <section key={sentRequest._id} className="gameCardOverview">
                         {sentRequest.requestedGame ? (
                             <>
                                 <p><strong>Game targeted</strong> </p>
@@ -272,13 +272,13 @@ function MyProfile() {
                             <p>Sent request details are missing</p>
                         )}
                        
-                    </div>
+                    </section>
                 ))
             ) : (
-                <div className="bottom-button">
+                <section className="bottom-button">
                 <p>You haven't sent any swap requests yet. Want to have a look at the games of our community? </p>
                 <Link to="/community"> <Button color="#5315c6">Check Our Community</Button> </Link>
-                </div>
+                </section>
 
             )}
             </div>

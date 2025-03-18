@@ -33,11 +33,11 @@ function CommunityPage() {
         <>
             <h1>Check other players profiles!</h1>
 
-            <div className="gamesContainer">
+            <main className="gamesContainer">
                 {users?.map((user) => {
                     return (
 
-                        <div key={user._id} className="gameCardOverview">
+                        <section key={user._id} className="gameCardOverview">
                             <h3>{user.username}</h3>
                             <p><strong>city:</strong> {user.city}</p>
                             <p><strong>favorite game style(s)</strong> </p>
@@ -56,11 +56,11 @@ function CommunityPage() {
                                 <span className="game-check">No games available</span>
                             )}
                             </p>
-                        </div>
+                        </section>
 
                     )
                 })}
-            </div>
+            </main>
         </>
 
     )

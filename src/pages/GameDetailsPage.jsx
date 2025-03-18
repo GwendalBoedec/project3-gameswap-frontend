@@ -38,7 +38,7 @@ function GameDetailsPage() {
 
     return (
 
-        <div className="gameDetailsCard">
+        <main className="gameDetailsCard">
             {game && (
                 <>
                     <h3>{game.title}</h3>
@@ -62,7 +62,7 @@ function GameDetailsPage() {
                 </>
 
             )}
-        </div>
+        </main>
     )
 }
 

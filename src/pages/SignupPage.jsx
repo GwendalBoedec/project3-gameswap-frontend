@@ -93,11 +93,11 @@ function SignupPage(props) {
     };
 
     return (
-        <div >
+        <main>
             <Title order={1} className="form-title">Sign Up</Title>
 
             <form className="signupLoginForms" onSubmit={handleSignupSubmit}>
-                <div className="form-group">
+                <section className="form-group">
                     <label className="form-label">Email</label>
                     <input
                         className="form-input"
@@ -106,8 +106,8 @@ function SignupPage(props) {
                         value={email}
                         onChange={handleEmail}
                     />
-                </div>
-                <div className="form-group">
+                </section>
+                <section className="form-group">
                     <label>Password</label>
                     <PasswordInput
 
@@ -116,8 +116,8 @@ function SignupPage(props) {
                         value={password}
                         onChange={handlePassword}
                     />
-                </div>
-                <div className="form-group">
+                </section>
+                <section className="form-group">
                     <label className="form-label">Username</label>
                     <input
                         className="form-input"
@@ -126,8 +126,8 @@ function SignupPage(props) {
                         value={username}
                         onChange={handleUsername}
                     />
-                </div>
-                <div className="form-group">
+                </section>
+                <section className="form-group">
                     <label className="form-label">City</label>
                     <input
                         className="form-input"
@@ -136,8 +136,8 @@ function SignupPage(props) {
                         value={city}
                         onChange={handleCity}
                     />
-                </div>
-                <div className="form-group">
+                </section>
+                <section className="form-group">
                 <label className="form-label">Game style </label>
                     <Select
                         className="form-input"
@@ -148,8 +148,8 @@ function SignupPage(props) {
                         placeholder="Choose your favorite consoles"
                         styles={dropdownStyles}
                         />
-                </div>
-                <div className="form-group">
+                </section>
+                <section className="form-group">
                     <label className="form-label">Game style </label>
                     <Select
                         className="form-input"
@@ -163,15 +163,15 @@ function SignupPage(props) {
                     
 
 
-                </div>
+                </section>
                 <Button color="#5315c6" type="submit">Sign Up</Button>
             </form>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
-            <div className="bottom-button">
+            <section className="bottom-button">
                 <p>Already have account?</p>
                 <Link to={"/login"}> <Button color="#5315c6"> Login </Button></Link>
-            </div>
-        </div>
+            </section>
+        </main>
     )
 }
 

@@ -68,22 +68,22 @@ function RequestGamePage() {
 
 
     return (
-        <div >
+        <main>
             <Title className="form-title">Make your swap offer!</Title>
             <form className="signupLoginForms" onSubmit={handleSubmit(onSubmit)}>
-                <div className="form-group">
+                <section className="form-group">
                 <label className="form-label">Targeted game</label>
                 <input type="text" className="form-input"
                     value={requestedGame?.title || ""}
                     readOnly />
-                    </div>
-                    <div className="form-group">
+                    </section>
+                    <section className="form-group">
                 <input type="hidden" className="form-input"
                     {...register("requestedGame")}
                     value={requestedGame?._id || ""}
                 />
-                </div>
-                <div className="form-group">
+                </section>
+                <section className="form-group">
                 <label className="form-label">Offered game</label> <select className="form-input"
                     {...register("offeredGame", { required: "pick a game among your collection" })}
                     defaultValue="" >
@@ -92,21 +92,21 @@ function RequestGamePage() {
                         <option key={game._id} value={game._id}>{game.title}</option>
                     ))}
                 </select>
-                </div>
-                <div className="form-group">
+                </section>
+                <section className="form-group">
                 <label className="form-label">Message</label> <input {...register("comment", { required: "pick a game among your collection" })}
                     className="form-input" placeholder="leave a message to the owner" />
                 {errors.comment && <p>{errors.comment.message}</p>}
-                </div>
-                <div className="form-group">
+                </section>
+                <section className="form-group">
                 <label className="form-label">Contact Details</label> <input {...register("contactDetails", { required: "add your phonenumber and/or email to get contacted by the owner" })}
                     className="form-input" placeholder="add your phonenumber and/or email to get contacted by the owner" />
                 {errors.contactDetails && <p>{errors.contactDetails.message}</p>}
-                    </div>
+                    </section>
                 <Button color="#5315c6" type="submit"> send request </Button>
             </form>
 
-        </div>
+        </main>
 
     )
 }

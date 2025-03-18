@@ -46,11 +46,11 @@ function LoginPage(props) {
 
   return (
 
-    <div>
+    <main>
       <Title className="form-title">Login</Title>
 
       <form className="signupLoginForms" onSubmit={handleLoginSubmit}>
-        <div className="form-group">
+        <section className="form-group">
         <label className="form-label">Email</label>
         <input className="form-input"
           type="email"
@@ -58,8 +58,8 @@ function LoginPage(props) {
           value={email}
           onChange={handleEmail}
         />
-        </div>
-        <div className="form-group">
+        </section>
+        <section className="form-group">
         <label className="form-label">Password:</label>
         <input
         className="form-input"
@@ -68,16 +68,16 @@ function LoginPage(props) {
           value={password}
           onChange={handlePassword}
         />
-        </div>
+        </section>
        
         <Button color="#5315c6" type="submit">Login</Button>
       </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
-      <div className="bottom-button">
+      <section className="bottom-button">
       <p>Don't have an account yet?</p>
       <Link to={"/signup"}> <Button color="#5315c6"> Sign Up </Button></Link>
-      </div>
-    </div>
+      </section>
+    </main>
 
   )
 
