@@ -12,6 +12,7 @@ function GameDetailsPage() {
     const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
     const { gameId } = useParams();
     const [game, setGame] = useState(null);
+    const [error, setError] = useState(null);
    
 
     useEffect(() => {
@@ -22,11 +23,16 @@ function GameDetailsPage() {
             })
             .catch((err) => {
                 console.log("oops something went wrong when retrieving game details", err)
+                setError("Sorry, we are currently unable to display game details. Please try later.")
             })
     }, []);
 
     const isOwner = game && game.owner._id === user._id;
   
+    if (error) {
+        return <div>{error}</div>;
+    }
+    
     if (game && game.owner === null) {
         return <Loader />
     }
