@@ -9,7 +9,7 @@ import Loader from "../components/Loader";
 
 function MyProfile() {
 
-    const [userGames, setUserGames] = useState([]);
+    const [userGames, setUserGames] = useState(null);
     const [users, setUsers] = useState([]);
     const [sentRequests, setSentRequests] = useState([]);
     const [receivedRequests, setReceivedRequests] = useState([]);

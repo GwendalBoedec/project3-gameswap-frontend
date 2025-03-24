@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function CommunityPage() {
 
-    const [users, setUsers] = useState();
+    const [users, setUsers] = useState(null);
 
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_API_URL}/api/users`,
@@ -46,7 +46,7 @@ function CommunityPage() {
                             <p>{user.favoriteConsoles.join(", ")}</p>
                             <p><strong>Current game collection</strong> </p>
                             <p> {user.ownedGames.length} game(s)</p>
-                            <p>{user.ownedGames?.length > 0 ? (
+                            <section>{user.ownedGames?.length > 0 ? (
                                 user.ownedGames.map((game) => (
                                     <p className="game-list-container"key={game._id}>
                                     <Link className="game-list"  to={`/gameslist/${game._id}`}> {game.title} </Link>
@@ -55,7 +55,7 @@ function CommunityPage() {
                             ) : (
                                 <span className="game-check">No games available</span>
                             )}
-                            </p>
+                            </section>
                         </section>
 
                     )
