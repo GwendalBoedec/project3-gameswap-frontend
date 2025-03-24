@@ -10,13 +10,12 @@ import Loader from "../components/Loader";
 function MyProfile() {
 
     const [userGames, setUserGames] = useState(null);
-    const [users, setUsers] = useState([]);
     const [sentRequests, setSentRequests] = useState([]);
     const [receivedRequests, setReceivedRequests] = useState([]);
     const [loading, setLoading] = useState(false)
-    const [errorMessage, setErrorMessage] = useState("");
+    const [gameErrorMessage, setGameErrorMessage] = useState("");
 
-    const navigate = useNavigate();
+   
 
     const getUserData = () => {
         
@@ -30,7 +29,7 @@ function MyProfile() {
             })
             .catch((err) => {
                 console.log("something wrong happened when retrieving user's games", err)
-                setErrorMessage("apologies, we are currently not able to load your game collection")
+                setGameErrorMessage("apologies, we are currently not able to load your game collection")
             });
 
        
@@ -90,10 +89,6 @@ function MyProfile() {
         setLoading(true);
         try {
             // Update owner for requested and offered games
-            /* await  Promise.all([
-                axios.put(`${import.meta.env.VITE_API_URL}/api/gameslist/${requestedGameId}`, { owner: buyerId}),
-                axios.put(`${import.meta.env.VITE_API_URL}/api/gameslist/${offeredGameId}`, { owner:  sellerId})
-            ]); */
 
             await axios.put(`${import.meta.env.VITE_API_URL}/api/gameslist/swap`, {
 
@@ -139,7 +134,6 @@ function MyProfile() {
                     console.error("Error refreshing community data:", err);
                 });
 
-           // navigate("/myprofile")
 
         } catch (err) {
             console.error("Error accepting request:", err);
@@ -185,7 +179,7 @@ function MyProfile() {
 
         <div className="profileContainer">
            
-            {errorMessage && <p>{errorMessage}</p>}
+            {gameErrorMessage && <p>{gameErrorMessage}</p>}
             {userGames.length > 0 ? (
                 userGames.map((game) => (
                     <section key={game._id} className="gameCardOverview">

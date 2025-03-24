@@ -3,14 +3,13 @@ import { useState, useEffect } from "react";
 import "../styles/homepage.css";
 import Loader from "../components/Loader.jsx";
 import { Link, useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import { Button } from "@mantine/core";
 
 
 function Homepage() {
 
-    const gameId = { useParams };
     const [games, setGames] = useState(null);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_API_URL}/api/gameslist`)
@@ -21,9 +20,14 @@ function Homepage() {
             })
             .catch((err) => {
                 console.log("ooops error", err)
+                setError("Sorry, we are currently unable to display the list of available games in our platform.")
             })
 
     }, [])
+
+    if (error) {
+        return <div>{error}</div>;
+    }
 
     if (games === null) {
         return <Loader />
@@ -44,10 +48,10 @@ function Homepage() {
             
             <h2>Have a look at some of the games shared by our community</h2>
             <main className="gamesContainer">
-                {games.map((game, i) => {
+                {games.map((game) => {
                     return (
 
-                        <section key={i} className="gameCardOverview">
+                        <section key={game._id} className="gameCardOverview">
                             <h3>{game.title}</h3>
                             <p><strong> {game.console} </strong> </p>
                             <img src={game.image} alt="game cover" />

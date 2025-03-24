@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 function CommunityPage() {
 
     const [users, setUsers] = useState(null);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_API_URL}/api/users`,
@@ -20,9 +21,14 @@ function CommunityPage() {
             })
             .catch((err) => {
                 console.log("ooops error while retrieving list of users", err)
+                setError("Sorry, we are currently unable to display the Communinity. Please try again later.");
             })
 
     }, [])
+
+    if (error) {
+        return <div>{error}</div>; 
+    }
 
     if (users === null) {
         return <Loader />
