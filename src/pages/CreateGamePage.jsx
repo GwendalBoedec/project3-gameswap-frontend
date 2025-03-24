@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "../styles/Forms.css"
 import { Title, Button } from "@mantine/core";

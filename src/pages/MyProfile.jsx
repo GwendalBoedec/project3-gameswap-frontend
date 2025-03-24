@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "../styles/myprofile.css";
 import { Button } from "@mantine/core";
+import Loader from "../components/Loader";
 
 
 function MyProfile() {
@@ -169,6 +170,10 @@ function MyProfile() {
             setLoading(false)
         }
     };
+
+    if (userGames === null) {
+        return <Loader />
+    }
 
     return (
     <>

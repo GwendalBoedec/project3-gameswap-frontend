@@ -2,14 +2,14 @@ import { NavLink, Link } from "react-router-dom";
 import "../styles/navbar.css";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import { AppShell, Button } from '@mantine/core';
+import { Button } from '@mantine/core';
 
 
 
 function Navbar() {
     const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
-    console.log("user", user)
+   
     return (
 
         <nav>
