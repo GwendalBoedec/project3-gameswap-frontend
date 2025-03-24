@@ -11,7 +11,7 @@ function GameDetailsPage() {
 
     const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
     const { gameId } = useParams();
-    const [game, setGame] = useState();
+    const [game, setGame] = useState(null);
    
 
     useEffect(() => {
