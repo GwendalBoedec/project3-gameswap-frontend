@@ -9,7 +9,7 @@ import { Button } from '@mantine/core';
 function Navbar() {
     const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
-   
+
     return (
 
         <nav>
@@ -40,14 +40,14 @@ function Navbar() {
                         </li>
                         <li className="logout" >
                             <NavLink to="/myprofile/addgame">
-                                <Button 
-                                color="#5315c6">Add a game to your collection</Button>
+                                <Button
+                                    color="#5315c6">Add a game to your collection</Button>
                             </NavLink>
                         </li>
                         <li className="logout">
-                        <NavLink to="/">
-                            <Button color="#736294" onClick={logOutUser}>Logout</Button>
-                        </NavLink>
+                            <NavLink to="/">
+                                <Button color="#736294" onClick={logOutUser}>Logout</Button>
+                            </NavLink>
                         </li>
                         <span> Hi {user && user.username ? user.username : "Loading"} !</span>
 

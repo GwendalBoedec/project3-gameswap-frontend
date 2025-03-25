@@ -5,9 +5,6 @@ import "../styles/Forms.css"
 import { Title, Button } from "@mantine/core";
 import { consoleOptions, gameStylesOptions, conditionOptions } from "../config/FORMS_OPTIONS";
 
-
-
-
 function CreateGamePage() {
 
     const navigate = useNavigate()
@@ -75,7 +72,7 @@ function CreateGamePage() {
                     <label className="form-label">Game style </label><select className="form-input"
                         {...register("gameStyle", { required: "define game style" })}
                         defaultValue="">
-                            <option value="" disabled> select main style of the game </option>
+                        <option value="" disabled> select main style of the game </option>
                         {gameStylesOptions.map((gameStyle) => (
                             <option key={gameStyle.value} value={gameStyle.value}> {gameStyle.label} </option>
                         ))}
@@ -110,7 +107,7 @@ function CreateGamePage() {
                         defaultValue="">
                         <option value="" disabled> select the state condition of your game </option>
                         {conditionOptions.map((condition) => (
-                           <option key={condition.value} value={condition.value}>{condition.label}</option> 
+                            <option key={condition.value} value={condition.value}>{condition.label}</option>
                         ))}
                     </select>
                     {errors.condition && <p>{errors.condition.message}</p>}

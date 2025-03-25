@@ -36,16 +36,16 @@ function Homepage() {
 
     return (
         <>
-            <header className="header"> 
+            <header className="header">
                 <img className="homelogo" src="/logo swap.png" alt="swapgame logo"></img>
-                <section className="textHeader"> 
-                <h1>Share, Swap & Play!</h1>
-                <h2> GameSwa:p: For the love of gaming, in memory of the good old days</h2>
-                <p> <strong>"The good old days were better." not sure if this statement is true... except for gaming! Whether you're a Nintendo fan or a Sony player, some games of our childhood still bring vibrant memories. At GameSwa:p, we decided to gather people with the same passion for retrogaming and help them bring these memories back. It's time to play!  </strong></p>
-                <Link to={"/signup"}><Button color="#5315c6">Get Started</Button> </Link>
+                <section className="textHeader">
+                    <h1>Share, Swap & Play!</h1>
+                    <h2> GameSwa:p: For the love of gaming, in memory of the good old days</h2>
+                    <p> <strong>"The good old days were better." not sure if this statement is true... except for gaming! Whether you're a Nintendo fan or a Sony player, some games of our childhood still bring vibrant memories. At GameSwa:p, we decided to gather people with the same passion for retrogaming and help them bring these memories back. It's time to play!  </strong></p>
+                    <Link to={"/signup"}><Button color="#5315c6">Get Started</Button> </Link>
                 </section>
             </header>
-            
+
             <h2>Have a look at some of the games shared by our community</h2>
             <main className="gamesContainer">
                 {games.map((game) => {
@@ -55,7 +55,7 @@ function Homepage() {
                             <h3>{game.title}</h3>
                             <p><strong> {game.console} </strong> </p>
                             <img src={game.image} alt="game cover" />
-                           
+
                         </section>
 
                     )

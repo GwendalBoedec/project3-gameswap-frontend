@@ -27,7 +27,7 @@ function SignupPage(props) {
 
 
     const dropdownStyles = {
-        control: (styles, {hasValue}) => ({
+        control: (styles, { hasValue }) => ({
             ...styles,
             backgroundColor: "#2b2b3c", // Fond du champ sélectionné
             borderColor: "#444", // Bordure plus foncée
@@ -138,7 +138,7 @@ function SignupPage(props) {
                     />
                 </section>
                 <section className="form-group">
-                <label className="form-label">Game style </label>
+                    <label className="form-label">Game style </label>
                     <Select
                         className="form-input"
                         isMulti
@@ -147,7 +147,7 @@ function SignupPage(props) {
                         onChange={handleFavoriteConsoles}
                         placeholder="Choose your favorite consoles"
                         styles={dropdownStyles}
-                        />
+                    />
                 </section>
                 <section className="form-group">
                     <label className="form-label">Game style </label>
@@ -159,8 +159,8 @@ function SignupPage(props) {
                         onChange={handleFavoriteGameStyles}
                         placeholder="Choose your favorite game styles"
                         styles={dropdownStyles}
-                        />
-                    
+                    />
+
 
 
                 </section>

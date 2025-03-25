@@ -27,7 +27,7 @@ function CommunityPage() {
     }, [])
 
     if (error) {
-        return <div>{error}</div>; 
+        return <div>{error}</div>;
     }
 
     if (users === null) {
@@ -54,8 +54,8 @@ function CommunityPage() {
                             <p> {user.ownedGames.length} game(s)</p>
                             <section>{user.ownedGames?.length > 0 ? (
                                 user.ownedGames.map((game) => (
-                                    <p className="game-list-container"key={game._id}>
-                                    <Link className="game-list"  to={`/gameslist/${game._id}`}> {game.title} </Link>
+                                    <p className="game-list-container" key={game._id}>
+                                        <Link className="game-list" to={`/gameslist/${game._id}`}> {game.title} </Link>
                                     </p>
                                 ))
                             ) : (

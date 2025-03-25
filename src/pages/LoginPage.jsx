@@ -51,31 +51,31 @@ function LoginPage(props) {
 
       <form className="signupLoginForms" onSubmit={handleLoginSubmit}>
         <section className="form-group">
-        <label className="form-label">Email</label>
-        <input className="form-input"
-          type="email"
-          name="email"
-          value={email}
-          onChange={handleEmail}
-        />
+          <label className="form-label">Email</label>
+          <input className="form-input"
+            type="email"
+            name="email"
+            value={email}
+            onChange={handleEmail}
+          />
         </section>
         <section className="form-group">
-        <label className="form-label">Password:</label>
-        <input
-        className="form-input"
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
+          <label className="form-label">Password:</label>
+          <input
+            className="form-input"
+            type="password"
+            name="password"
+            value={password}
+            onChange={handlePassword}
+          />
         </section>
-       
+
         <Button color="#5315c6" type="submit">Login</Button>
       </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
       <section className="bottom-button">
-      <p>Don't have an account yet?</p>
-      <Link to={"/signup"}> <Button color="#5315c6"> Sign Up </Button></Link>
+        <p>Don't have an account yet?</p>
+        <Link to={"/signup"}> <Button color="#5315c6"> Sign Up </Button></Link>
       </section>
     </main>
 

@@ -13,7 +13,7 @@ function GameDetailsPage() {
     const { gameId } = useParams();
     const [game, setGame] = useState(null);
     const [error, setError] = useState(null);
-   
+
 
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_API_URL}/api/gameslist/${gameId}`)
@@ -28,11 +28,11 @@ function GameDetailsPage() {
     }, []);
 
     const isOwner = game && game.owner._id === user._id;
-  
+
     if (error) {
         return <div>{error}</div>;
     }
-    
+
     if (game && game.owner === null) {
         return <Loader />
     }
@@ -52,13 +52,13 @@ function GameDetailsPage() {
                     <p><strong>Is game condition certificated?</strong> {game.conditionCertificate ? "Yes" : " No"}</p>
                     <p><strong>Is owner ok for swaping?</strong> {game.availableForTrade ? "yes, let's talk!" : "No, unless you have a very good offer!"}</p>
                     {!isOwner && (
-                        <Link to={`/gameslist/${game._id}/request`}><Button 
-                        style={{ margin: '5px' }} 
-                        size="xs"
-                        color="#5315c6">Send a swap request</Button></Link>
+                        <Link to={`/gameslist/${game._id}/request`}><Button
+                            style={{ margin: '5px' }}
+                            size="xs"
+                            color="#5315c6">Send a swap request</Button></Link>
                     )}
                     <Link to="/myprofile"><Button
-                        style={{ margin: '5px' }} 
+                        style={{ margin: '5px' }}
                         size="xs"
                         color="#5315c6"
                     >Back to myprofile</Button></Link>
