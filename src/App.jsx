@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import "./App.css"
 import Navbar from './components/Navbar'
 import Homepage from './pages/Homepage'
@@ -12,7 +11,6 @@ import LoginPage from './pages/LoginPage'
 import MyProfile from './pages/MyProfile'
 import CommunityPage from './pages/CommunityPage'
 import '@mantine/core/styles.css';
-import { MantineProvider } from '@mantine/core';
 
 
 function App() {
